@@ -1,0 +1,15 @@
+form{
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+}
+
+mat-form-field{
+    width: 530px;
+}
+
+button{
+    margin-right: 10px;
+    background-color: green !important;
+    color: white !important;
+}

@@ -1,0 +1,51 @@
+.tasks{
+    background-color: rgba(1, 1, 1, 0.150);
+    margin-top: 10px;
+    padding: 15px;
+    border-radius: 2px;
+    height: 20px;
+    width: 500px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    overflow: hidden;
+    word-wrap: break-word;
+    overflow-wrap: break-word;
+}
+
+p{
+    max-width: 1000px;
+    overflow: hidden;
+}
+
+.title {
+    flex: 1;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+}
+
+.action-icons {
+    display: flex;
+}
+
+.action-icons mat-icon {
+    margin-left: 10px;
+}
+
+.checkBtn {
+    color: green;
+    background-color: white;
+    border-radius: 100%;
+}
+
+.cancelBtn {
+    color: red;
+    background-color: white;
+    border-radius: 100%;
+}
+
+.strike-through {
+    text-decoration: line-through;
+    font-weight: 300;
+}
