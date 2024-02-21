@@ -34,10 +34,14 @@ export class AddTaskComponent implements OnInit {
       title: this.addTaskForm.controls['title'].value,
       completed: false
     }
-    this.service.addTodo(data);
-    this.resetForm();
+    if(!this.service.checkTaskExists(data)){
+      this.service.addTodo(data)
+      this.resetForm();
+    } else {
+      alert("Task : " + data.title.toUpperCase() + " Already Exists")
+    }
   }
-  
+
   resetForm(){
     this.addTaskForm.reset();
   }

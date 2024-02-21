@@ -24,25 +24,34 @@ export class TodoService {
   // Add a new task
   addTodo(todo: Todo): void {
     this.todos.push(todo);
-    console.log("New Task Added: ",todo.title)
+    console.log("New Task Added: ", todo.title);
     this.getTodos();
   }
 
   // Toggle a task to completed or not
-  toggleCompletion(todo:Todo): void{
+  toggleCompletion(todo: Todo): void{
     const index = this.todos.findIndex(i => i.id === todo.id);
     this.todos[index].completed = !this.todos[index].completed;
     if(todo.completed){
-      console.log(todo.title, " Completed")
+      console.log(todo.title, " has been Completed");
     } else{
-      console.log(todo.title, " To Do")
+      console.log(todo.title, " is Incomplete");
     }
   }
 
   // Delete a task
   deleteTodo(id: number): void {
     this.todos = this.todos.filter(todo => todo.id !== id);
-    console.log("Deleted todo with ID: ", id)
+    console.log("Deleted todo with ID: " + id)
+  }
+
+  checkTaskExists(todo: Todo): boolean{
+    let exists = true;
+    const index = this.todos.findIndex(i => i.title.toLowerCase() === todo.title.toLowerCase());
+    if (index === -1){
+      exists = false;
+    }
+    return exists
   }
 
   generateUniqueId(): number{

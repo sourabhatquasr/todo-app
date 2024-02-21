@@ -1,6 +1,6 @@
 <div class="container">
     <div class="tasks" *ngFor="let todo of todos">
-            <p [ngClass]="{'strike-through': todo.completed}">{{ todo.title }}</p>
+            <p [ngClass]="{'strike-through': todo.completed}">{{ todo.title | titlecase }}</p>
         <div class="action-icons">
             <mat-icon ng-cloak data-ng-class="strikethrough"(click)="toggleStatus(todo)" class="checkBtn">check_circle</mat-icon>
             <mat-icon mat-raised-button class="cancelBtn" (click)="deleteTodo(todo)">cancel</mat-icon>
