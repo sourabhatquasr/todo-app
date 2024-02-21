@@ -14,14 +14,18 @@ export class ViewTasksComponent {
   constructor(private service: TodoService) {
     this.todos = this.service.getTodos(); 
   }
-
-  deleteTodo(id: number): void {
-    this.service.deleteTodo(id);
-    this.todos = this.service.getTodos();
-  }
   
   toggleStatus(todo: Todo): void {
     this.service.toggleCompletion(todo);
+    this.updateView();
+  }
+  
+  deleteTodo(todo: Todo): void {
+    this.service.deleteTodo(todo.id);
+    this.updateView();
+  }
+
+  updateView(){
     this.todos = this.service.getTodos();
   }
 }

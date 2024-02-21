@@ -25,17 +25,20 @@ export class AddTaskComponent implements OnInit {
     this.addTaskForm = this.fb.group({
       title: ["", Validators.required],
     })
-    this.todos = this.service.getTodos()
+    this.todos = this.service.getTodos();
   }
 
   addTask() {
     const data = {
-      id: this.todos.length +1,
+      id: this.service.generateUniqueId(),
       title: this.addTaskForm.controls['title'].value,
       completed: false
     }
-    this.service.addTodo(data)
-    this.addTaskForm.reset()
-    this.service.getTodos()
+    this.service.addTodo(data);
+    this.resetForm();
+  }
+  
+  resetForm(){
+    this.addTaskForm.reset();
   }
 }
