@@ -1,8 +1,25 @@
-<form [formGroup]="addTaskForm">
-    <mat-form-field color="primary">
-        <mat-label>Add Task</mat-label>
-        <input formControlName="title" matInput placeholder="Please enter a task" maxlength="70">
-        <button color="warn" mat-flat-button [disabled]="addTaskForm.invalid || addTaskForm.pristine"
-            (click)="addTask()" matSuffix>Add</button>
-    </mat-form-field>
-</form>
+<div class="container">
+    <mat-card>
+        <form [formGroup]="addTaskForm" (submit)="addTask()">
+        <mat-card-content>
+            <mat-form-field>
+                <mat-label>Add Task</mat-label>
+                <input formControlName="title" matInput placeholder="Please enter a task" maxlength="70">
+            </mat-form-field>
+            <mat-form-field>
+                <mat-label>Choose a Due Date (Optional)</mat-label>
+                <input matInput formControlName="dueDate" (change)="datePicker()" [matDatepicker]="dueDate" [min]="minDate"
+                    (dateChange)="datePicker()">
+                <mat-hint>Format: MM/DD/YYYY</mat-hint>
+                <mat-datepicker-toggle matIconSuffix [for]="dueDate"></mat-datepicker-toggle>
+                <mat-datepicker [ariaValueMin]="20" #dueDate></mat-datepicker>
+            </mat-form-field>
+            <div class="buttons" fxLayout="row" fxLayoutAlign="center">
+                <button class="addBtn" color="primary" mat-flat-button [disabled]="addTaskForm.invalid || addTaskForm.pristine" (click)="addTask()"
+                    matSuffix><mat-icon>note_add</mat-icon> Add</button>
+                <button class="cancelBtn" color="warn" mat-flat-button [disabled]="addTaskForm.invalid || addTaskForm.pristine" matSuffix type="reset">Clear</button>
+            </div>
+        </mat-card-content>
+        </form>
+    </mat-card>
+</div>

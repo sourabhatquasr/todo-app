@@ -1,15 +1,29 @@
-form{
+/* form{
     margin-top: 20px;
     display: flex;
     justify-content: center;
+} */
+
+.container{
+    display: flex;
+    justify-content: center;
+    height: 37vh;
 }
 
 mat-form-field{
-    width: 530px;
+    width: 100%;
+}
+
+mat-card{
+    width: 600px;
+    margin-top: 20px;
+    background-color: rgba(0, 0, 255, 0.148);
 }
 
 button{
-    margin-right: 10px;
-    background-color: green !important;
-    color: white !important;
+    margin-right: 20px;
+}
+
+.buttons{
+    margin-top: 10px;
 }

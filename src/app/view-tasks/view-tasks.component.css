@@ -1,51 +1,52 @@
-.tasks{
-    background-color: rgba(1, 1, 1, 0.150);
-    margin-top: 10px;
-    padding: 15px;
-    border-radius: 2px;
-    height: 20px;
-    width: 500px;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    overflow: hidden;
-    word-wrap: break-word;
-    overflow-wrap: break-word;
-}
-
-p{
-    max-width: 1000px;
-    overflow: hidden;
-}
-
-.title {
-    flex: 1;
-    overflow: hidden;
-    white-space: nowrap;
-    text-overflow: ellipsis;
-}
-
-.action-icons {
-    display: flex;
-}
-
-.action-icons mat-icon {
-    margin-left: 10px;
-}
-
-.checkBtn {
-    color: green;
-    background-color: white;
-    border-radius: 100%;
-}
-
-.cancelBtn {
-    color: red;
-    background-color: white;
-    border-radius: 100%;
+mat-card{
+    background-color: rgba(34, 255, 0, 0.397);
 }
 
 .strike-through {
-    text-decoration: line-through;
-    font-weight: 300;
+    font-size: large;
+    font-weight: 400;
+    text-decoration:line-through;
+    font-style: oblique;
+}
+
+.container{
+    margin-top: 20px;
+    width: 600px;
+}
+
+.deleteBtn{
+    margin-left: 10px;
+    float: right;
+}
+
+mat-expansion-panel-header{
+    margin-bottom: 0px;
+}
+
+hr{
+    height: 1;
+    width: 500px;
+    background-color: black;
+}
+
+mat-card-header, h2{
+    align-self: center;
+    font-weight: 400;
+    margin-bottom: 0px;
+    margin-top: 0px;
+}
+
+mat-expansion-panel{
+    margin-top: 10px;
+}
+
+mat-panel-title{
+    font-size: large;
+}
+p{
+    margin-top: 0px;
+}
+
+.completed-date{
+    float: inline-end;
 }

@@ -1,9 +1,42 @@
-<div class="container">
-    <div class="tasks" *ngFor="let todo of todos">
-            <p [ngClass]="{'strike-through': todo.completed}">{{ todo.title | titlecase }}</p>
-        <div class="action-icons">
-            <mat-icon ng-cloak data-ng-class="strikethrough"(click)="toggleStatus(todo)" class="checkBtn">check_circle</mat-icon>
-            <mat-icon mat-raised-button class="cancelBtn" (click)="deleteTodo(todo)">cancel</mat-icon>
-        </div>
-    </div>
-</div>
+<mat-card class="container">
+    <mat-card-header>
+        <h2>Tasks</h2>
+    </mat-card-header>
+    <hr />
+    <mat-card-content *ngFor="let todo of todos">
+        <mat-expansion-panel *ngIf="!todo.completed" [hideToggle]="true">
+            <mat-expansion-panel-header>
+                <mat-panel-title [ngClass]="{'strike-through': todo.completed}">
+                    {{ todo.title | titlecase }}
+                </mat-panel-title>
+                <mat-icon  ng-cloak data-ng-class="strikethrough" mat-raised-button color="dark" (click)="toggleStatus(todo)">check_circle</mat-icon>
+            </mat-expansion-panel-header>
+            <p *ngIf="todo.dueDate">Due Date: <strong>{{todo.dueDate | date}}</strong></p>
+            <p>Task Description goes here... (in future)</p>
+            <button mat-raised-button color="warn" (click)="deleteTodo(todo)"
+                class="deleteBtn"><mat-icon>close</mat-icon>Delete</button>
+        </mat-expansion-panel>
+    </mat-card-content>
+
+    <mat-card-header>
+        <h2>Completed Tasks</h2>
+    </mat-card-header>
+    <hr />
+    <mat-card-content *ngFor="let todo of todos">
+        <mat-expansion-panel *ngIf="todo.completed" [hideToggle]="true">
+            <mat-expansion-panel-header>
+                <mat-panel-title [ngClass]="{'strike-through': todo.completed}">
+                    {{ todo.title | titlecase }}
+                </mat-panel-title>
+                <span *ngIf="todo.completedDate" class="completed-date">Completed on: <strong>{{todo.completedDate | date}}</strong> </span>
+            </mat-expansion-panel-header>
+            <p *ngIf="todo.dueDate">Due Date: <strong>{{todo.dueDate | date}}</strong></p>
+            <p>Task Description goes here... (in future)</p>
+            <button ng-cloak data-ng-class="strikethrough" mat-raised-button color="primary"
+                (click)="toggleStatus(todo)" class="checkBtn"><mat-icon>replay</mat-icon>Mark as
+                Incomplete</button>
+            <button mat-raised-button color="warn" (click)="deleteTodo(todo)"
+                class="deleteBtn"><mat-icon>close</mat-icon>Delete</button>
+        </mat-expansion-panel>
+    </mat-card-content>
+</mat-card>

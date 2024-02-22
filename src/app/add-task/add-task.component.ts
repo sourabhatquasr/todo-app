@@ -7,14 +7,14 @@ import { Todo } from '../model';
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
-  styleUrls: ['./add-task.component.css']
+  styleUrls: ['./add-task.component.css'],
 })
 
 
 export class AddTaskComponent implements OnInit {
-  
   id: number = 0
   addTaskForm: FormGroup = new FormGroup({});
+  minDate = new Date();
   todos: Todo[] = []
   constructor(
     private fb: FormBuilder,
@@ -24,6 +24,7 @@ export class AddTaskComponent implements OnInit {
   ngOnInit(): void{
     this.addTaskForm = this.fb.group({
       title: ["", Validators.required],
+      dueDate: [],
     })
     this.todos = this.service.getTodos();
   }
@@ -32,6 +33,7 @@ export class AddTaskComponent implements OnInit {
     const data = {
       id: this.service.generateUniqueId(),
       title: this.addTaskForm.controls['title'].value,
+      dueDate: this.addTaskForm.controls['dueDate'].value,
       completed: false
     }
     if(!this.service.checkTaskExists(data)){
@@ -40,6 +42,10 @@ export class AddTaskComponent implements OnInit {
     } else {
       alert("Task : " + data.title.toUpperCase() + " Already Exists")
     }
+  }
+
+  datePicker(){
+    console.log(this.addTaskForm.controls['dueDate'].value)
   }
 
   resetForm(){
