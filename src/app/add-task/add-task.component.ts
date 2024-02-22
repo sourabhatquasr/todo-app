@@ -12,9 +12,9 @@ import { Todo } from '../model';
 
 
 export class AddTaskComponent implements OnInit {
-  id: number = 0
+  
   addTaskForm: FormGroup = new FormGroup({});
-  minDate = new Date();
+  minDate: Date = new Date();
   todos: Todo[] = []
   constructor(
     private fb: FormBuilder,
@@ -32,7 +32,7 @@ export class AddTaskComponent implements OnInit {
   addTask() {
     const data = {
       id: this.service.generateUniqueId(),
-      title: this.addTaskForm.controls['title'].value,
+      title: this.addTaskForm.controls['title'].value.toLowerCase(),
       dueDate: this.addTaskForm.controls['dueDate'].value,
       completed: false
     }
@@ -40,12 +40,8 @@ export class AddTaskComponent implements OnInit {
       this.service.addTodo(data)
       this.resetForm();
     } else {
-      alert("Task : " + data.title.toUpperCase() + " Already Exists")
+      alert("Task " + data.title.toUpperCase() + " Exists")
     }
-  }
-
-  datePicker(){
-    console.log(this.addTaskForm.controls['dueDate'].value)
   }
 
   resetForm(){

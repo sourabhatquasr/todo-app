@@ -9,40 +9,47 @@ import { Todo } from './model';
 
 export class TodoService {
   private todos: Todo[] = [
-    { id: 2024220114544350, title: 'Code', completed: false, dueDate: "2024-02-02T03:38:18.375Z"},
-    { id: 2024219114544351, title: 'Eat', completed: false },
-    { id: 2024218114544352, title: 'Sleep', completed: false },
-    { id: 2024217114544353, title: 'Repeat', completed: true, completedDate: "2024-02-17T03:38:18.375Z" },
+    { id: 2024220114544350, title: 'code', completed: false, description: "I like to code using Angular Framework"},
+    { id: 2024219114544351, title: 'eat', completed: false },
+    { id: 2024218114544352, title: 'sleep', completed: false },
+    { id: 2024217114544353, title: 'repeat', completed: true, completedDate: "2024-02-17T03:38:18.375Z" },
   ];
-  
+
   constructor() { }
 
   getTodos(): Todo[] {
+    // console.log(this.todos)
     return this.todos;
   }
 
   // Add a new task
   addTodo(todo: Todo): void {
-    this.todos.unshift(todo);
-    console.log("New Task Added: ", todo.title);
-    this.getTodos();
+      this.todos.unshift(todo);
+      // console.log("New Task Added: ", todo.title);
   }
 
   // Toggle a task to completed or not
-  toggleCompletion(todo: Todo): void{
+  toggleCompletion(todo: Todo): void {
     const index = this.todos.findIndex(i => i.id === todo.id);
     this.todos[index].completed = !this.todos[index].completed;
-    if(todo.completed){
+    if (todo.completed) {
       this.todos[index].completedDate = new Date;
-      console.log(todo.title, " has been Completed");
-    } else{
-      console.log(todo.title, " is Incomplete");
+      // console.log(todo.title, " has been Completed");
+    } else {
+      // console.log(todo.title, " is Incomplete");
     }
+  }
+
+  // Update a task 
+  updateTodo(todo: Todo): void{
+      this.deleteTodo(todo.id);
+      this.addTodo(todo);
   }
 
   // Delete a task
   deleteTodo(id: number): void {
     this.todos = this.todos.filter(todo => todo.id !== id);
+    this.getTodos();
     console.log("Deleted todo with ID: " + id)
   }
 
@@ -55,7 +62,7 @@ export class TodoService {
     return exists
   }
 
-  generateUniqueId(): number{
+  generateUniqueId(): number {
     let date = new Date();
     let year = date.getFullYear().toString();
     let month = (date.getMonth() + 1).toString().padStart(0);

@@ -1,4 +1,4 @@
-<mat-card class="container">
+<mat-card class="container" *ngIf="todos.length!==0">
     <mat-card-header>
         <h2>Tasks</h2>
     </mat-card-header>
@@ -6,13 +6,12 @@
     <mat-card-content *ngFor="let todo of todos">
         <mat-expansion-panel *ngIf="!todo.completed" [hideToggle]="true">
             <mat-expansion-panel-header>
-                <mat-panel-title [ngClass]="{'strike-through': todo.completed}">
-                    {{ todo.title | titlecase }}
-                </mat-panel-title>
+                <mat-panel-title [ngClass]="{'strike-through': todo.completed}">{{ todo.title | titlecase }}</mat-panel-title>
                 <mat-icon  ng-cloak data-ng-class="strikethrough" mat-raised-button color="dark" (click)="toggleStatus(todo)">check_circle</mat-icon>
             </mat-expansion-panel-header>
             <p *ngIf="todo.dueDate">Due Date: <strong>{{todo.dueDate | date}}</strong></p>
-            <p>Task Description goes here... (in future)</p>
+            <p *ngIf="todo.description">Description: {{todo.description | titlecase}}</p>
+            <button (click)="editTask(todo)" mat-raised-button color="primary" class="editBtn"><mat-icon>edit</mat-icon>Edit</button>
             <button mat-raised-button color="warn" (click)="deleteTodo(todo)"
                 class="deleteBtn"><mat-icon>close</mat-icon>Delete</button>
         </mat-expansion-panel>

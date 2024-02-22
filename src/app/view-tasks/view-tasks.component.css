@@ -15,8 +15,10 @@ mat-card{
 }
 
 .deleteBtn{
-    margin-left: 10px;
     float: right;
+}
+.editBtn{
+    float: left;
 }
 
 mat-expansion-panel-header{

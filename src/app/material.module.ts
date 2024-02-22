@@ -8,7 +8,7 @@ import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
 import { MatCardModule } from '@angular/material/card';
 import { MatExpansionModule } from '@angular/material/expansion';
-
+import { MatDialogModule } from '@angular/material/dialog';
 
 const MaterialComponents = [
   MatButtonModule,
@@ -22,6 +22,7 @@ const MaterialComponents = [
   MatNativeDateModule,
   MatCardModule,
   MatExpansionModule,
+  MatDialogModule,
 ]
 
 @NgModule({

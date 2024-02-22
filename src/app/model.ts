@@ -4,4 +4,5 @@ export interface Todo {
     dueDate?: Date | string;
     completed: boolean;
     completedDate?: Date | string;
+    description?: string
 }

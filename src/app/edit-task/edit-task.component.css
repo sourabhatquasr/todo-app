@@ -1,0 +1,27 @@
+mat-card{
+    width: 600px;
+    margin: 0px;
+    padding-bottom: 40px;
+    padding-top: 40px;
+}
+
+mat-form-field{
+    width: 480px;
+}
+
+li{
+    list-style: none;
+    margin: 0px;
+}
+
+.clearBtn{
+    float: right;
+    margin-right: 47px;
+}
+.updateBtn{
+    float: left;
+}
+
+.error-msg{
+    color: red;
+}

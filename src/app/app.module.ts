@@ -7,12 +7,14 @@ import { MaterialModule } from './material.module';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { ViewTasksComponent } from './view-tasks/view-tasks.component';
+import { EditTaskComponent } from './edit-task/edit-task.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddTaskComponent,
-    ViewTasksComponent
+    ViewTasksComponent,
+    EditTaskComponent
   ],
   imports: [
     BrowserModule,

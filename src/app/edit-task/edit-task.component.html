@@ -1,0 +1,40 @@
+<div class="container">
+    <mat-card>
+        <form [formGroup]="updateTaskForm" (submit)="updateTasks()">
+            <mat-card-content>
+                <ul>
+                    <li>
+                        <mat-form-field>
+                            <mat-label>Add Task</mat-label>
+                            <input formControlName="title" matInput  placeholder="Please enter a task" maxlength="70">
+                        </mat-form-field>
+                    </li>
+                    <li>
+                        <mat-form-field>
+                            <mat-label>Choose a Due Date (Optional)</mat-label>
+                            <input matInput formControlName="dueDate" [matDatepicker]="dueDate" [min]="minDate">
+                            <mat-hint>Format: MM/DD/YYYY</mat-hint>
+                            <mat-datepicker-toggle matIconSuffix [for]="dueDate"></mat-datepicker-toggle>
+                            <mat-datepicker #dueDate></mat-datepicker>
+                        </mat-form-field>
+                    </li>
+                    <li>
+                        <mat-form-field class="example-full-width">
+                            <mat-label>Add a description</mat-label>
+                            <textarea matInput formControlName="description" placeholder="Detailed description of the task... (Optional)"></textarea>
+                        </mat-form-field>
+                    </li>
+                    <div class="buttons" fxLayout="row" fxLayoutAlign="center">
+                        <button class="updateBtn" type="submit" color="primary" [mat-dialog-close]="true" mat-flat-button
+                        [disabled]="updateTaskForm.invalid || updateTaskForm.pristine " (close)="true"
+                        matSuffix><mat-icon>note_add</mat-icon> Update</button>
+                        <button class="clearBtn" color="warn" mat-flat-button
+                        [hidden]="updateTaskForm.invalid || updateTaskForm.pristine" matSuffix
+                        type="reset"><mat-icon>clear</mat-icon>Clear</button>
+                    </div>
+                </ul>
+            </mat-card-content>
+        </form>
+    </mat-card>
+</div>
+<!-- "(updateTaskForm.invalid || updateTaskForm.pristine ) || -->
