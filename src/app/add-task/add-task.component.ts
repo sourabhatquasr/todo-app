@@ -3,7 +3,6 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { TodoService } from '../todo.service';
 import { Todo } from '../model';
 
-
 @Component({
   selector: 'app-add-task',
   templateUrl: './add-task.component.html',
@@ -18,7 +17,7 @@ export class AddTaskComponent implements OnInit {
   todos: Todo[] = []
   constructor(
     private fb: FormBuilder,
-    private service: TodoService
+    private service: TodoService,
   ) { }
 
   ngOnInit(): void{
@@ -37,7 +36,7 @@ export class AddTaskComponent implements OnInit {
       completed: false
     }
     if(!this.service.checkTaskExists(data)){
-      this.service.addTodo(data)
+      this.service.addTodo(data);
       this.resetForm();
     } else {
       alert("Task " + data.title.toUpperCase() + " Exists")

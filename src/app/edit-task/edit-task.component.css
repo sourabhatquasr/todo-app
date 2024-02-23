@@ -15,11 +15,13 @@ li{
 }
 
 .clearBtn{
-    float: right;
-    margin-right: 47px;
+    float: left;
 }
 .updateBtn{
-    float: left;
+    margin-right: 47px;
+    float: right;
+    background-color: green !important;
+    color: white !important;
 }
 
 .error-msg{

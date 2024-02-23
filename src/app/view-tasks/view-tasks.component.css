@@ -1,6 +1,10 @@
 mat-card{
-    background-color: rgba(34, 255, 0, 0.397);
+    border: 2px solid;
+    border-radius: 10px;
+    margin-bottom: 10px;
 }
+
+
 
 .strike-through {
     font-size: large;
@@ -35,15 +39,19 @@ mat-card-header, h2{
     align-self: center;
     font-weight: 400;
     margin-bottom: 0px;
-    margin-top: 0px;
+    margin-top: 5px;
+    text-transform: uppercase;
+    font-size: large;
 }
 
 mat-expansion-panel{
     margin-top: 10px;
+    background-color: rgb(225, 225, 225);
 }
 
 mat-panel-title{
     font-size: large;
+    overflow: hidden;
 }
 p{
     margin-top: 0px;
@@ -51,4 +59,10 @@ p{
 
 .completed-date{
     float: inline-end;
+}
+
+.check-circle {
+    background-color: white;
+    color:green;
+    border-radius: 20px;
 }

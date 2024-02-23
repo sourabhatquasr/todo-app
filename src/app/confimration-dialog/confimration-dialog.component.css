@@ -1,0 +1,17 @@
+.updateBtn{
+    float: right;
+}
+
+.cancalBtn{
+    float:left
+}
+
+mat-card-header{
+    margin-bottom: 20px;
+}
+mat-card-title{
+    font-weight: 400;
+}
+strong{
+    font-weight: 500;
+}

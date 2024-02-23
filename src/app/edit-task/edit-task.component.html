@@ -26,11 +26,11 @@
                     </li>
                     <div class="buttons" fxLayout="row" fxLayoutAlign="center">
                         <button class="updateBtn" type="submit" color="primary" [mat-dialog-close]="true" mat-flat-button
-                        [disabled]="updateTaskForm.invalid || updateTaskForm.pristine " (close)="true"
+                        [disabled]="updateTaskForm.invalid" (close)="true"
                         matSuffix><mat-icon>note_add</mat-icon> Update</button>
                         <button class="clearBtn" color="warn" mat-flat-button
-                        [hidden]="updateTaskForm.invalid || updateTaskForm.pristine" matSuffix
-                        type="reset"><mat-icon>clear</mat-icon>Clear</button>
+                        matSuffix [mat-dialog-close]="false">
+                            <mat-icon>clear</mat-icon>Cancel</button>
                     </div>
                 </ul>
             </mat-card-content>

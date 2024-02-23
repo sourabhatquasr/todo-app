@@ -7,7 +7,7 @@
 .container{
     display: flex;
     justify-content: center;
-    height: 37vh;
+    height: 260px;
 }
 
 mat-form-field{
@@ -17,11 +17,15 @@ mat-form-field{
 mat-card{
     width: 600px;
     margin-top: 20px;
-    background-color: rgba(0, 0, 255, 0.148);
+    background-color: rgb(199, 199, 255);
+    border: 2px solid;
+    border-radius: 10px;
 }
 
-button{
-    margin-right: 20px;
+.addBtn {
+    float: right;
+    background-color: green !important;
+    color: white !important;
 }
 
 .buttons{

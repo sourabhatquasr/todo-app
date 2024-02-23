@@ -8,13 +8,15 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { ViewTasksComponent } from './view-tasks/view-tasks.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
+import { ConfimrationDialogComponent } from './confimration-dialog/confimration-dialog.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     AddTaskComponent,
     ViewTasksComponent,
-    EditTaskComponent
+    EditTaskComponent,
+    ConfimrationDialogComponent,
   ],
   imports: [
     BrowserModule,

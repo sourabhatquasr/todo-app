@@ -1,0 +1,19 @@
+<div class="container">
+    <mat-card fxLayout="row" fxLayoutAlign="center">
+        <form>
+            <mat-card-content>
+                <mat-card-header>
+                    <mat-card-title>Do you want to mark task <u>{{data.title | titlecase}}</u> as incomplete?</mat-card-title>
+                    <mat-card-subtitle>You will be able to mark the task as completed later.</mat-card-subtitle>
+                </mat-card-header>
+                    <div>
+                        <button class="clearBtn" color="warn" mat-flat-button matSuffix [mat-dialog-close]="false">
+                            <mat-icon>clear</mat-icon>Cancel</button>
+                        <button class="updateBtn" type="submit" color="primary" [mat-dialog-close]="true"
+                            mat-flat-button (close)="true"
+                            matSuffix><mat-icon>check</mat-icon> Yes</button>
+                    </div>
+            </mat-card-content>
+        </form>
+    </mat-card>
+</div>

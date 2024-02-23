@@ -18,39 +18,40 @@ export class TodoService {
   constructor() { }
 
   getTodos(): Todo[] {
-    // console.log(this.todos)
     return this.todos;
   }
 
   // Add a new task
   addTodo(todo: Todo): void {
       this.todos.unshift(todo);
-      // console.log("New Task Added: ", todo.title);
-  }
-
-  // Toggle a task to completed or not
+      console.log("New Task Added: ", todo.title);
+    }
+    
+    // Toggle a task to completed or not
   toggleCompletion(todo: Todo): void {
     const index = this.todos.findIndex(i => i.id === todo.id);
     this.todos[index].completed = !this.todos[index].completed;
     if (todo.completed) {
       this.todos[index].completedDate = new Date;
-      // console.log(todo.title, " has been Completed");
+      console.log(todo.title, " has been Completed");
     } else {
-      // console.log(todo.title, " is Incomplete");
+      console.log(todo.title, " is Incomplete");
     }
   }
 
   // Update a task 
   updateTodo(todo: Todo): void{
-      this.deleteTodo(todo.id);
-      this.addTodo(todo);
+    let toDelete: number = todo.id;
+    this.todos = this.todos.filter(todo => todo.id !== toDelete);
+    this.todos.unshift(todo);
   }
 
   // Delete a task
-  deleteTodo(id: number): void {
-    this.todos = this.todos.filter(todo => todo.id !== id);
+  deleteTodo(todo: Todo): void {
+    let toDelete: number = todo.id;
+    this.todos = this.todos.filter(todo => todo.id != toDelete);
     this.getTodos();
-    console.log("Deleted todo with ID: " + id)
+    console.log("Deleted task: " + todo.title)
   }
 
   checkTaskExists(todo: Todo): boolean{

@@ -7,10 +7,10 @@
         <mat-expansion-panel *ngIf="!todo.completed" [hideToggle]="true">
             <mat-expansion-panel-header>
                 <mat-panel-title [ngClass]="{'strike-through': todo.completed}">{{ todo.title | titlecase }}</mat-panel-title>
-                <mat-icon  ng-cloak data-ng-class="strikethrough" mat-raised-button color="dark" (click)="toggleStatus(todo)">check_circle</mat-icon>
+                <mat-icon  ng-cloak data-ng-class="strikethrough" class="check-circle" (click)="toggleStatus(todo)">check_circle</mat-icon>
             </mat-expansion-panel-header>
-            <p *ngIf="todo.dueDate">Due Date: <strong>{{todo.dueDate | date}}</strong></p>
-            <p *ngIf="todo.description">Description: {{todo.description | titlecase}}</p>
+            <p *ngIf="todo.dueDate">Due Date: <strong>{{todo.dueDate | date:'dd MMM yyyy'}}</strong></p>
+            <p *ngIf="todo.description">Description: {{todo.description}}</p>
             <button (click)="editTask(todo)" mat-raised-button color="primary" class="editBtn"><mat-icon>edit</mat-icon>Edit</button>
             <button mat-raised-button color="warn" (click)="deleteTodo(todo)"
                 class="deleteBtn"><mat-icon>close</mat-icon>Delete</button>
@@ -27,12 +27,12 @@
                 <mat-panel-title [ngClass]="{'strike-through': todo.completed}">
                     {{ todo.title | titlecase }}
                 </mat-panel-title>
-                <span *ngIf="todo.completedDate" class="completed-date">Completed on: <strong>{{todo.completedDate | date}}</strong> </span>
+                <span *ngIf="todo.completedDate" class="completed-date">Completed on: <strong> {{todo.completedDate | date:'dd MMM yyyy'}}</strong> at <strong>{{todo.completedDate | date:'hh:mm a'}}</strong> </span>
             </mat-expansion-panel-header>
-            <p *ngIf="todo.dueDate">Due Date: <strong>{{todo.dueDate | date}}</strong></p>
+            <p *ngIf="todo.dueDate">Due Date: <strong>{{todo.dueDate | date:'dd MMM yyyy'}}</strong></p>
             <p>Task Description goes here... (in future)</p>
             <button ng-cloak data-ng-class="strikethrough" mat-raised-button color="primary"
-                (click)="toggleStatus(todo)" class="checkBtn"><mat-icon>replay</mat-icon>Mark as
+                (click)="markAsIncomplete(todo)" class="checkBtn"><mat-icon>replay</mat-icon>Mark as
                 Incomplete</button>
             <button mat-raised-button color="warn" (click)="deleteTodo(todo)"
                 class="deleteBtn"><mat-icon>close</mat-icon>Delete</button>

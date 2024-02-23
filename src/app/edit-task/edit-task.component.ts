@@ -41,29 +41,26 @@ export class EditTaskComponent {
     otherTasks.forEach(element => {
       taskTitles.push(element.title);
     });
-
-    console.log(taskTitles)
     if (taskTitles.includes(this.updateTaskForm.controls['title'].value.toLowerCase())) {
       exists = false;
     } else {
       exists = true;
     }
-    console.log(exists);
     return exists;
   }
 
   updateTasks() {
+    let updatedData = {
+      id: this.data.id,
+      title: this.updateTaskForm.controls['title'].value.toLowerCase(),
+      dueDate: this.updateTaskForm.controls['dueDate'].value,
+      description: this.updateTaskForm.controls['description'].value,
+      completed: false,
+    }
     if(this.checkTodoUnique()){
-      let updatedData = {
-        id: this.data.id,
-        title: this.updateTaskForm.controls['title'].value.toLowerCase(),
-        dueDate: this.updateTaskForm.controls['dueDate'].value,
-        description: this.updateTaskForm.controls['description'].value,
-        completed: false,
-      }
       this.service.updateTodo(updatedData)
     } else {
-      alert("Task with the Title " + this.updateTaskForm.controls['title'].value.toUpperCase() + " exists")
+      alert("Task with name " + updatedData.title.toLocaleUpperCase() + " exists")
     }
   }
 }
