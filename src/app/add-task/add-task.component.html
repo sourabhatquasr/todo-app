@@ -14,9 +14,9 @@
                 <mat-datepicker #dueDate></mat-datepicker>
             </mat-form-field>
             <div class="buttons" fxLayout="row" fxLayoutAlign="center">
-                <button class="addBtn" color="primary" mat-flat-button [disabled]="addTaskForm.invalid || addTaskForm.pristine" (click)="addTask()"
+                <button class="addBtn" color="primary" mat-raised-button [disabled]="addTaskForm.invalid || addTaskForm.pristine" (click)="addTask()"
                     matSuffix><mat-icon>note_add</mat-icon> Add</button>
-                <button class="cancelBtn" color="warn" mat-flat-button [hidden]="addTaskForm.pristine" matSuffix type="reset">Clear</button>
+                <button class="cancelBtn" color="warn" mat-raised-button matSuffix type="reset">Clear</button>
             </div>
         </mat-card-content>
         </form>

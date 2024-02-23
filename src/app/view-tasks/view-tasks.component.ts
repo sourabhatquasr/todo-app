@@ -21,7 +21,6 @@ export class ViewTasksComponent {
 
   toggleStatus(todo: Todo): void {
     this.service.toggleCompletion(todo);
-    this.updateView();
   }
 
   deleteTodo(todo: Todo): void {

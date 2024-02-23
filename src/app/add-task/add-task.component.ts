@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormGroup, FormBuilder } from '@angular/forms';
+import { Validators, FormGroup, FormBuilder, AbstractControl, ValidatorFn } from '@angular/forms';
 import { TodoService } from '../todo.service';
 import { Todo } from '../model';
 
@@ -22,7 +22,7 @@ export class AddTaskComponent implements OnInit {
 
   ngOnInit(): void{
     this.addTaskForm = this.fb.group({
-      title: ["", Validators.required],
+      title: ["", [Validators.required, this.ignoreSpacesValidator()]],
       dueDate: [],
     })
     this.todos = this.service.getTodos();
@@ -41,6 +41,15 @@ export class AddTaskComponent implements OnInit {
     } else {
       alert("Task " + data.title.toUpperCase() + " Exists")
     }
+  }
+
+  ignoreSpacesValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      if (control.value && control.value.trim().length === 0) {
+        return { 'spaces': true };
+      }
+      return null;
+    };
   }
 
   resetForm(){

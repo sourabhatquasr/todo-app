@@ -3,3 +3,7 @@ app-view-tasks{
     display: flex;
     justify-content: center;
 }
+
+mat-toolbar{
+    background-color: rgba(0, 0, 0, 0.107);
+}

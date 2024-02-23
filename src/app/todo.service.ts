@@ -9,8 +9,8 @@ import { Todo } from './model';
 
 export class TodoService {
   private todos: Todo[] = [
-    { id: 2024220114544350, title: 'code', completed: false, description: "I like to code using Angular Framework"},
-    { id: 2024219114544351, title: 'eat', completed: false },
+    { id: 2024220114544350, title: 'Code', completed: false, description: "I like to code using Angular Framework because it is very challenging"},
+    { id: 2024219114544351, title: 'Eat', completed: false },
     { id: 2024218114544352, title: 'sleep', completed: false },
     { id: 2024217114544353, title: 'repeat', completed: true, completedDate: "2024-02-17T03:38:18.375Z" },
   ];
@@ -26,8 +26,8 @@ export class TodoService {
       this.todos.unshift(todo);
       console.log("New Task Added: ", todo.title);
     }
-    
-    // Toggle a task to completed or not
+
+  // Toggle a task to completed or not
   toggleCompletion(todo: Todo): void {
     const index = this.todos.findIndex(i => i.id === todo.id);
     this.todos[index].completed = !this.todos[index].completed;

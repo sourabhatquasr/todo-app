@@ -1,41 +1,46 @@
-mat-card{
+mat-card {
     border: 2px solid;
     border-radius: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
+    background-color: rgb(255, 230, 216);
+    border: 2px solid;
+    border-radius: 0px 0px 10px 10px;
+    box-shadow: 7px 7px 3px 3px rgb(73, 0, 0);
 }
-
 
 
 .strike-through {
     font-size: large;
     font-weight: 400;
-    text-decoration:line-through;
+    text-decoration: line-through;
     font-style: oblique;
 }
 
-.container{
+.container {
     margin-top: 20px;
     width: 600px;
 }
 
-.deleteBtn{
+.deleteBtn {
     float: right;
 }
-.editBtn{
+
+.editBtn {
     float: left;
 }
 
-mat-expansion-panel-header{
+mat-expansion-panel-header {
     margin-bottom: 0px;
 }
 
-hr{
+hr {
     height: 1;
     width: 500px;
     background-color: black;
 }
 
-mat-card-header, h2{
+mat-card-header,
+h2 {
     align-self: center;
     font-weight: 400;
     margin-bottom: 0px;
@@ -44,25 +49,53 @@ mat-card-header, h2{
     font-size: large;
 }
 
-mat-expansion-panel{
+mat-expansion-panel {
     margin-top: 10px;
-    background-color: rgb(225, 225, 225);
+    background-color: rgb(237, 237, 237);
 }
 
-mat-panel-title{
+mat-panel-title {
     font-size: large;
     overflow: hidden;
 }
-p{
+
+.description {
     margin-top: 0px;
+    width: 510px;
+    text-align: justify;
 }
 
-.completed-date{
+/* .completed-date{
     float: inline-end;
+} */
+
+.actions {
+    width: 200px;
+    display: flex;
+    background-color: rgb(255, 230, 216);
+    padding: 5px;
+    border-radius: 5px;
+    justify-content: space-between;
+    border: 0.5px solid black;
+    box-shadow: 1px 1px 1px 1px rgb(73, 0, 0);
 }
 
-.check-circle {
-    background-color: white;
-    color:green;
-    border-radius: 20px;
+.actions-text{
+    margin-top: 3px;
+}
+
+
+.edit-icon {
+    color: rgb(0, 0, 134);
+    font-size: 17px;
+    padding-top: 4px;
+    padding-bottom: 1px;
+}
+
+.toggle-icon {
+    color: green;
+}
+
+.delete-icon {
+    color: red;
 }

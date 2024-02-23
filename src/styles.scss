@@ -1,0 +1,10 @@
+@import '~@angular/material/theming';
+
+// Define your custom primary color
+$custom-primary: mat-palette($mat-indigo);
+
+// Override the primary color in the theme
+$custom-theme: mat-light-theme($mat-indigo-palette, $mat-amber-palette);
+
+// Include the Angular Material core and theme mixins
+@include angular-material-theme($custom-theme);
