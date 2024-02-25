@@ -3,6 +3,7 @@ import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { TodoService } from '../todo.service';
 import { Todo } from '../model';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { ToastService, ToastType } from '../toast.service';
 
 
 @Component({
@@ -22,6 +23,7 @@ export class EditTaskComponent {
     @Inject(MAT_DIALOG_DATA) public data: Todo,
     private fb: FormBuilder,
     private service: TodoService,
+    private toast: ToastService,
   ) { }
 
   ngOnInit(): void {
@@ -39,7 +41,7 @@ export class EditTaskComponent {
     let taskTitles: string[] = [];
     let otherTasks = this.todos.filter(todo => todo.title !== this.data.title);
     otherTasks.forEach(element => {
-      taskTitles.push(element.title);
+      taskTitles.push(element.title.toLowerCase());
     });
     if (taskTitles.includes(this.updateTaskForm.controls['title'].value.toLowerCase())) {
       exists = false;
@@ -52,15 +54,16 @@ export class EditTaskComponent {
   updateTasks() {
     let updatedData = {
       id: this.data.id,
-      title: this.updateTaskForm.controls['title'].value.toLowerCase(),
+      title: this.updateTaskForm.controls['title'].value,
       dueDate: this.updateTaskForm.controls['dueDate'].value,
       description: this.updateTaskForm.controls['description'].value,
       completed: false,
     }
     if(this.checkTodoUnique()){
-      this.service.updateTodo(updatedData)
+      this.service.updateTodo(updatedData);
+      this.toast.showToast(`Details of task: ${updatedData.title} modified!`, ToastType.Success)
     } else {
-      alert("Task with name " + updatedData.title.toLocaleUpperCase() + " exists")
+      this.toast.showToast(`Task with title: ${updatedData.title} already exists!`, ToastType.Error)
     }
   }
 }

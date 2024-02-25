@@ -15,16 +15,19 @@ mat-card{
     background-color: rgb(255, 230, 216);
     border: 2px solid;
     border-radius: 10px 10px 0px 0px;
-    box-shadow: 7px 7px 3px 3px rgb(73, 0, 0);
+    box-shadow: 7px 7px 3px 3px rgb(49, 0, 0);
 }
 
 .addBtn {
     float: right;
-    /* background-color: green !important; */
+    background-color: green !important;
     width: 100px;
 }
+
+.addBtn:disabled {
+    background-color: rgb(196, 195, 195) !important;
+}
 .cancelBtn {
-    /* background-color: green !important; */
     width: 100px;
 }
 

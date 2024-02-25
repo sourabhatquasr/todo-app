@@ -7,3 +7,20 @@ app-view-tasks{
 mat-toolbar{
     background-color: rgba(0, 0, 0, 0.107);
 }
+
+.title {
+    /* font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif; */
+    font-weight: 600;
+    letter-spacing: 2px;
+    font-family: sans-serif;
+    font-size: xx-large;
+    text-shadow: 1px 1px white, 2px 2px black;
+}
+
+.gif{
+    width: 24px;
+    margin-right: 10px;
+    border: solid black 2px;
+    border-radius: 2px;
+    box-shadow: 1px 1px 1px 1px white;
+}

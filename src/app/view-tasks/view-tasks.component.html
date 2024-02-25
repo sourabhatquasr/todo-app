@@ -18,7 +18,7 @@
                 <mat-icon matTooltip="Mark as Completed" ng-cloak data-ng-class="strikethrough" class="toggle-icon"
                     (click)="toggleStatus(todo)">check</mat-icon>
                 <mat-icon matTooltip="Delete Task!" ng-cloak data-ng-class="strikethrough" class="delete-icon"
-                    (click)="deleteTodo(todo)">close</mat-icon>
+                    (click)="confirmDeletion(todo)">close</mat-icon>
             </div>
         </mat-expansion-panel>
     </mat-card-content>
@@ -27,10 +27,10 @@
     </mat-card-header>
     <hr />
     <mat-card-content *ngFor="let todo of todos">
-        <mat-expansion-panel *ngIf="todo.completed">
+        <mat-expansion-panel *ngIf="todo.completed" >
             <mat-expansion-panel-header>
                 <mat-panel-title [ngClass]="{'strike-through': todo.completed}">
-                    {{ todo.title | titlecase }}
+                    {{ todo.title }}
                 </mat-panel-title>
             </mat-expansion-panel-header>
             <p *ngIf="todo.completedDate" class="completed-date">Completed on: <strong> {{todo.completedDate |
@@ -40,10 +40,10 @@
             <p class="description" *ngIf="todo.description"><strong>Description</strong>: {{todo.description}}</p>
             <div class="actions">
                 <span class="actions-text">Actions: </span>
-                <mat-icon matTooltip="Mark as Incomplete" ng-cloak data-ng-class="strikethrough" class="toggle-icon"
-                    (click)="markAsIncomplete(todo)">check</mat-icon>
+                <mat-icon matTooltip="Mark as Incomplete" ng-cloak data-ng-class="strikethrough" class="incomplete-icon"
+                    (click)="toggleStatus(todo)">repeat</mat-icon>
                 <mat-icon matTooltip="Delete Task!" ng-cloak data-ng-class="strikethrough" class="delete-icon"
-                    (click)="deleteTodo(todo)">close</mat-icon>
+                    (click)="confirmDeletion(todo)">close</mat-icon>
             </div>
 
         </mat-expansion-panel>

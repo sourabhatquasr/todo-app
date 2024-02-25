@@ -31,7 +31,7 @@ export class AddTaskComponent implements OnInit {
   addTask() {
     const data = {
       id: this.service.generateUniqueId(),
-      title: this.addTaskForm.controls['title'].value.toLowerCase(),
+      title: this.addTaskForm.controls['title'].value,
       dueDate: this.addTaskForm.controls['dueDate'].value,
       completed: false
     }

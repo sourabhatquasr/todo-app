@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Todo } from './model';
+import { ToastService, ToastType } from './toast.service';
 
 
 @Injectable({
@@ -9,13 +10,13 @@ import { Todo } from './model';
 
 export class TodoService {
   private todos: Todo[] = [
-    { id: 2024220114544350, title: 'Code', completed: false, description: "I like to code using Angular Framework because it is very challenging"},
+    { id: 2024220114544350, title: 'Code', completed: false, description: "I like to code using Angular Framework because it is very challenging."},
     { id: 2024219114544351, title: 'Eat', completed: false },
-    { id: 2024218114544352, title: 'sleep', completed: false },
-    { id: 2024217114544353, title: 'repeat', completed: true, completedDate: "2024-02-17T03:38:18.375Z" },
+    { id: 2024218114544352, title: 'Sleep', completed: false },
+    { id: 2024217114544353, title: 'Repeat', completed: true, completedDate: "2024-02-17T03:38:18.375Z" },
   ];
 
-  constructor() { }
+  constructor(private toast: ToastService) { }
 
   getTodos(): Todo[] {
     return this.todos;
@@ -24,7 +25,7 @@ export class TodoService {
   // Add a new task
   addTodo(todo: Todo): void {
       this.todos.unshift(todo);
-      console.log("New Task Added: ", todo.title);
+      this.toast.showToast(`'${todo.title}' added successfully!`, ToastType.Success);
     }
 
   // Toggle a task to completed or not
@@ -33,12 +34,12 @@ export class TodoService {
     this.todos[index].completed = !this.todos[index].completed;
     if (todo.completed) {
       this.todos[index].completedDate = new Date;
-      console.log(todo.title, " has been Completed");
+      this.toast.showToast(`'${todo.title}' marked as completed`, ToastType.Success)
     } else {
-      console.log(todo.title, " is Incomplete");
+      this.toast.showToast(`'${todo.title}'  is marked as incomplete`, ToastType.Info)
     }
   }
-
+  
   // Update a task 
   updateTodo(todo: Todo): void{
     let toDelete: number = todo.id;
@@ -51,7 +52,7 @@ export class TodoService {
     let toDelete: number = todo.id;
     this.todos = this.todos.filter(todo => todo.id != toDelete);
     this.getTodos();
-    console.log("Deleted task: " + todo.title)
+    this.toast.showToast(`'${todo.title}' Deleted Successfully`, ToastType.Error)
   }
 
   checkTaskExists(todo: Todo): boolean{

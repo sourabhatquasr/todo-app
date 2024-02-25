@@ -9,6 +9,7 @@ import { AddTaskComponent } from './add-task/add-task.component';
 import { ViewTasksComponent } from './view-tasks/view-tasks.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
 import { ConfimrationDialogComponent } from './confimration-dialog/confimration-dialog.component';
+import { ToastNotificationComponent } from './toast-notification/toast-notification.component';
 
 @NgModule({
   declarations: [
@@ -17,6 +18,7 @@ import { ConfimrationDialogComponent } from './confimration-dialog/confimration-
     ViewTasksComponent,
     EditTaskComponent,
     ConfimrationDialogComponent,
+    ToastNotificationComponent,
   ],
   imports: [
     BrowserModule,
