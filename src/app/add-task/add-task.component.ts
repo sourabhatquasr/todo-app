@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Validators, FormGroup, FormBuilder, AbstractControl, ValidatorFn } from '@angular/forms';
 import { TodoService } from '../todo.service';
 import { Todo } from '../model';
+import { ToastService, ToastType } from '../toast.service';
 
 @Component({
   selector: 'app-add-task',
@@ -18,6 +19,7 @@ export class AddTaskComponent implements OnInit {
   constructor(
     private fb: FormBuilder,
     private service: TodoService,
+    private toast: ToastService,
   ) { }
 
   ngOnInit(): void{
@@ -39,7 +41,7 @@ export class AddTaskComponent implements OnInit {
       this.service.addTodo(data);
       this.resetForm();
     } else {
-      alert("Task " + data.title.toUpperCase() + " Exists")
+      this.toast.showToast(`Such Task Already Exists: ${data.title}`,ToastType.Error)
     }
   }
 
