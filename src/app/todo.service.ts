@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Todo } from './model';
 import { ToastService, ToastType } from './toast.service';
+import { ValidatorFn, AbstractControl } from '@angular/forms';
 
 
 @Injectable({
@@ -16,7 +17,18 @@ export class TodoService {
     { id: 2024217114544353, title: 'Repeat', completed: true, completedDate: "2024-02-17T03:38:18.375Z" },
   ];
 
+  loggedInUser: string = ""
+
   constructor(private toast: ToastService) { }
+
+  ignoreSpacesValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      if (control.value && control.value.trim().length === 0) {
+        return { 'spaces': true };
+      }
+      return null;
+    };
+  }
 
   getTodos(): Todo[] {
     return this.todos;

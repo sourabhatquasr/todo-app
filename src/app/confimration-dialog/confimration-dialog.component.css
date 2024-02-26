@@ -19,3 +19,7 @@ mat-card{
     border: 2px black solid;
     padding: 20px;
 }
+
+p{
+    width: fit-content;
+}

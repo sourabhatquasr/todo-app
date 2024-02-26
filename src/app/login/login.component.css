@@ -1,0 +1,28 @@
+.container {
+    font-family: sans-serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+}
+
+.login-card {
+    width: 400px;
+    box-shadow: 3px 3px 4px 4px rgb(69, 0, 0);
+}
+
+.full-width {
+    width: calc(100% - 48px);
+}
+
+.button-container {
+    text-align: center;
+}
+
+mat-form-field{
+    width: 365px !important;
+}
+
+mat-card-header{
+    margin-bottom: 10px;
+}

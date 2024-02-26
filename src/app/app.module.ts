@@ -10,6 +10,10 @@ import { ViewTasksComponent } from './view-tasks/view-tasks.component';
 import { EditTaskComponent } from './edit-task/edit-task.component';
 import { ConfimrationDialogComponent } from './confimration-dialog/confimration-dialog.component';
 import { ToastNotificationComponent } from './toast-notification/toast-notification.component';
+import { AppRoutingModule } from './app-routing.module';
+import { LoginComponent } from './login/login.component';
+import { TasksComponent } from './tasks/tasks.component';
+import { AuthGuard } from './auth.guard';
 
 @NgModule({
   declarations: [
@@ -19,6 +23,8 @@ import { ToastNotificationComponent } from './toast-notification/toast-notificat
     EditTaskComponent,
     ConfimrationDialogComponent,
     ToastNotificationComponent,
+    LoginComponent,
+    TasksComponent
   ],
   imports: [
     BrowserModule,
@@ -26,8 +32,9 @@ import { ToastNotificationComponent } from './toast-notification/toast-notificat
     MaterialModule,
     FormsModule,
     ReactiveFormsModule,
+    AppRoutingModule,
   ],
-  providers: [],
+  providers: [AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

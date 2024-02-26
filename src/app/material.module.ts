@@ -24,7 +24,7 @@ const MaterialComponents = [
   MatCardModule,
   MatExpansionModule,
   MatDialogModule,
-  MatTooltipModule
+  MatTooltipModule,
 ]
 
 @NgModule({

@@ -1,0 +1,20 @@
+<div class="homepage">
+    <!-- Toolbar -->
+    <mat-toolbar>
+        <mat-toolbar-row>
+            <img class="gif" src="../assets/images/todo-icon.gif" alt="todo-app-logo">
+            <span class="title">TODO Application</span>
+            <span class="spacer"></span>
+            <span class="">Hi {{loggedInUser | titlecase}}! </span>
+            <button (click)="logOut()" matTooltip="Logout" mat-icon-button class="logoutBtn">
+                <mat-icon class="logout">exit_to_app</mat-icon>
+            </button>
+        </mat-toolbar-row>
+    </mat-toolbar>
+
+    <app-toast-notification [toast]="toast"></app-toast-notification>
+
+    <!-- Components -->
+    <app-add-task></app-add-task>
+    <app-view-tasks></app-view-tasks>
+</div>

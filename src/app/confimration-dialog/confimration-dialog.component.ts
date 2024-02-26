@@ -11,6 +11,4 @@ export class ConfimrationDialogComponent {
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Todo){}
 
-  ngOnInit(): void {
-  }
 }

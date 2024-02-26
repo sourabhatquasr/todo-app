@@ -18,7 +18,7 @@
                 <mat-icon matTooltip="Mark as Completed" ng-cloak data-ng-class="strikethrough" class="toggle-icon"
                     (click)="toggleStatus(todo)">check</mat-icon>
                 <mat-icon matTooltip="Delete Task!" ng-cloak data-ng-class="strikethrough" class="delete-icon"
-                    (click)="confirmDeletion(todo)">close</mat-icon>
+                    (click)="confirmDeletion(todo)">delete_outline</mat-icon>
             </div>
         </mat-expansion-panel>
     </mat-card-content>
@@ -27,7 +27,7 @@
     </mat-card-header>
     <hr />
     <mat-card-content *ngFor="let todo of todos">
-        <mat-expansion-panel *ngIf="todo.completed" >
+        <mat-expansion-panel *ngIf="todo.completed">
             <mat-expansion-panel-header>
                 <mat-panel-title [ngClass]="{'strike-through': todo.completed}">
                     {{ todo.title }}
@@ -43,7 +43,7 @@
                 <mat-icon matTooltip="Mark as Incomplete" ng-cloak data-ng-class="strikethrough" class="incomplete-icon"
                     (click)="toggleStatus(todo)">repeat</mat-icon>
                 <mat-icon matTooltip="Delete Task!" ng-cloak data-ng-class="strikethrough" class="delete-icon"
-                    (click)="confirmDeletion(todo)">close</mat-icon>
+                    (click)="confirmDeletion(todo)">delete_outline</mat-icon>
             </div>
 
         </mat-expansion-panel>

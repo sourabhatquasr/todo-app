@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Validators, FormGroup, FormBuilder, AbstractControl, ValidatorFn } from '@angular/forms';
+import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { TodoService } from '../todo.service';
 import { Todo } from '../model';
 import { ToastService, ToastType } from '../toast.service';
@@ -24,7 +24,7 @@ export class AddTaskComponent implements OnInit {
 
   ngOnInit(): void{
     this.addTaskForm = this.fb.group({
-      title: ["", [Validators.required, this.ignoreSpacesValidator()]],
+      title: ["", [Validators.required, this.service.ignoreSpacesValidator()]],
       dueDate: [],
     })
     this.todos = this.service.getTodos();
@@ -41,17 +41,8 @@ export class AddTaskComponent implements OnInit {
       this.service.addTodo(data);
       this.resetForm();
     } else {
-      this.toast.showToast(`Such Task Already Exists: ${data.title}`,ToastType.Error)
+      this.toast.showToast(`${data.title} already exists!`,ToastType.Error)
     }
-  }
-
-  ignoreSpacesValidator(): ValidatorFn {
-    return (control: AbstractControl): { [key: string]: any } | null => {
-      if (control.value && control.value.trim().length === 0) {
-        return { 'spaces': true };
-      }
-      return null;
-    };
   }
 
   resetForm(){

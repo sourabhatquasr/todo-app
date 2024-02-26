@@ -8,6 +8,21 @@
     color: #fff;
     font-size: 16px;
     z-index: 1000;
+    animation: moveUp 5s ease-in linear;
+}
+
+@keyframes moveUp {
+    0% {
+        top: 120px;
+        opacity: 50%;
+        /* Start position at the bottom */
+    }
+    
+    100% {
+        top: 75px;
+        opacity: 100%;
+        /* End position at the top */
+    }
 }
 
 .success {
