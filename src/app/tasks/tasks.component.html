@@ -5,7 +5,7 @@
             <img class="gif" src="../assets/images/todo-icon.gif" alt="todo-app-logo">
             <span class="title">TODO Application</span>
             <span class="spacer"></span>
-            <span class="">Hi {{loggedInUser | titlecase}}! </span>
+            <span class="">Hi {{ loggedInUser }}! </span>
             <button (click)="logOut()" matTooltip="Logout" mat-icon-button class="logoutBtn">
                 <mat-icon class="logout">exit_to_app</mat-icon>
             </button>

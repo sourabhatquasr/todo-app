@@ -25,7 +25,7 @@ export class LoginComponent {
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
     this.loginForm = this.fb.group({
-      username: ["", [Validators.required, this.service.ignoreSpacesValidator()]],
+      username: ["", [Validators.required, this.service.usernameSpacesValidator()]],
       password: ["", Validators.required],
     })
   }

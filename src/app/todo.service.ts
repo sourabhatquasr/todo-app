@@ -21,6 +21,15 @@ export class TodoService {
 
   constructor(private toast: ToastService) { }
 
+  usernameSpacesValidator(): ValidatorFn {
+    return (control: AbstractControl): { [key: string]: any } | null => {
+      if (control.value && control.value.indexOf(' ') !== -1) {
+        return { 'spaces': true };
+      }
+      return null;
+    };
+  }
+
   ignoreSpacesValidator(): ValidatorFn {
     return (control: AbstractControl): { [key: string]: any } | null => {
       if (control.value && control.value.trim().length === 0) {
