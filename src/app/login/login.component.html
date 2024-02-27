@@ -11,7 +11,7 @@
                     <input matInput placeholder="Username"  type="text" formControlName="username" required>
                 </mat-form-field>
                 <mat-form-field class="full-width" appearance="fill">
-                    <input matInput placeholder="Password" formControlName="password" required>
+                    <input matInput placeholder="Password" type="password" formControlName="password" required>
                 </mat-form-field>
                 <div class="button-container">
                     <button [disabled]="loginForm.pristine || loginForm.invalid" mat-raised-button color="primary" type="submit">Login</button>
