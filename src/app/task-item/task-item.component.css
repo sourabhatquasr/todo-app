@@ -1,0 +1,57 @@
+.strike-through {
+    font-size: large;
+    font-weight: 400;
+    text-decoration: line-through;
+    font-style: oblique;
+}
+
+mat-expansion-panel{
+    margin-bottom: 10px;
+}
+
+.actions {
+    width: 200px;
+    height: 25px;
+    display: flex;
+    background-color: rgb(255, 230, 216);
+    padding: 5px;
+    border-radius: 5px;
+    justify-content: space-evenly;
+    border: 0.5px solid black;
+    box-shadow: 1px 1px 1px 1px rgb(49, 0, 0);
+}
+
+.actions-text {
+    margin-top: 3px;
+}
+
+
+.edit-icon {
+    color: rgb(0, 0, 134);
+    font-size: 17px;
+    padding-top: 4px;
+    padding-bottom: 1px;
+}
+
+.toggle-icon {
+    color: green;
+}
+
+.incomplete-icon {
+    color: blue;
+}
+
+.delete-icon {
+    color: red;
+}
+
+.description {
+    margin-top: 0px;
+    width: 510px;
+    text-align: justify;
+}
+
+mat-panel-title {
+    font-size: large;
+    overflow: hidden;
+}

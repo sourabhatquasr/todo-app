@@ -39,11 +39,11 @@ hr {
     background-color: black;
 }
 
-mat-card-header,
-h2 {
-    align-self: center;
+
+h3 {
+    text-align: center;
     font-weight: 400;
-    margin-bottom: 0px;
+    margin-bottom: 10px;
     margin-top: 5px;
     text-transform: uppercase;
     font-size: large;
@@ -53,21 +53,6 @@ mat-expansion-panel {
     margin-top: 10px;
     background-color: rgb(237, 237, 237);
 }
-
-mat-panel-title {
-    font-size: large;
-    overflow: hidden;
-}
-
-.description {
-    margin-top: 0px;
-    width: 510px;
-    text-align: justify;
-}
-
-/* .completed-date{
-    float: inline-end;
-} */
 
 .actions {
     width: 200px;

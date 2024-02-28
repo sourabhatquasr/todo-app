@@ -12,7 +12,7 @@ import { ValidatorFn, AbstractControl } from '@angular/forms';
 export class TodoService {
   private todos: Todo[] = [
     { id: 2024220114544350, title: 'Code', completed: false, description: "I like to code using Angular Framework because it is very challenging."},
-    { id: 2024219114544351, title: 'Eat', completed: false },
+    { id: 2024219114544351, title: 'Eat', completed: true },
     { id: 2024218114544352, title: 'Sleep', completed: false },
     { id: 2024217114544353, title: 'Repeat', completed: true, completedDate: "2024-02-17T03:38:18.375Z" },
   ];

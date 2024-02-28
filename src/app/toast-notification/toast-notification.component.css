@@ -1,5 +1,6 @@
 .toast {
     position: fixed;
+    /* position: absolute; ask ashok */
     top: 75px;
     right: 0px;
     margin-right: 10px;
@@ -15,13 +16,11 @@
     0% {
         top: 120px;
         opacity: 50%;
-        /* Start position at the bottom */
     }
     
     100% {
         top: 75px;
         opacity: 100%;
-        /* End position at the top */
     }
 }
 

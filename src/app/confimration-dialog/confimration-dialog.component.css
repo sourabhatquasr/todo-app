@@ -2,8 +2,8 @@
     float: right;
 }
 
-.cancalBtn{
-    float:left
+.cancelBtn{
+    float:left;
 }
 
 mat-card-header{
@@ -17,7 +17,7 @@ strong{
 }
 mat-card{
     border: 2px black solid;
-    padding: 20px;
+    padding: 10px;
 }
 
 p{

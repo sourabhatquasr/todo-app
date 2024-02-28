@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Todo } from '../model';
 import { TodoService } from '../todo.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,16 +13,18 @@ import { ToastService, ToastType } from '../toast.service';
 
 })
 export class ViewTasksComponent {
-  @Output()
-  editTasksEvent: EventEmitter<void> = new EventEmitter<void>();
 
-  todos: Todo[] = []
+  incompleteTasks: Todo[] = [];
+  completedTasks: Todo[] = [];
+
   constructor(private service: TodoService, public dialog: MatDialog, private toast: ToastService) {
-    this.todos = this.service.getTodos();
+    this.incompleteTasks = this.service.getTodos().filter(todo => !todo.completed)
+    this.completedTasks = this.service.getTodos().filter(todo => todo.completed)
   }
 
   toggleStatus(todo: Todo): void {
     this.service.toggleCompletion(todo);
+    this.updateView();
   }
 
   deleteTodo(todo: Todo): void {
@@ -49,6 +51,7 @@ export class ViewTasksComponent {
   }
 
   updateView() {
-    this.todos = this.service.getTodos();
+    this.incompleteTasks = this.service.getTodos().filter(todo => !todo.completed)
+    this.completedTasks = this.service.getTodos().filter(todo => todo.completed)
   }
 }

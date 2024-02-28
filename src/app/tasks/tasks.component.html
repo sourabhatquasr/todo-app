@@ -15,6 +15,7 @@
     <app-toast-notification [toast]="toast"></app-toast-notification>
 
     <!-- Components -->
-    <app-add-task></app-add-task>
-    <app-view-tasks></app-view-tasks>
+    <app-add-task (updateView)="updateView()"></app-add-task>
+    <app-view-tasks #viewTasks></app-view-tasks>
+
 </div>

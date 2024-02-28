@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { TodoService } from '../todo.service';
 import { Todo } from '../model';
@@ -12,7 +12,9 @@ import { ToastService, ToastType } from '../toast.service';
 
 
 export class AddTaskComponent implements OnInit {
-  
+  @Output() updateView: EventEmitter<void> = new EventEmitter<void>();
+
+
   addTaskForm: FormGroup = new FormGroup({});
   minDate: Date = new Date();
   todos: Todo[] = []
@@ -40,6 +42,7 @@ export class AddTaskComponent implements OnInit {
     if(!this.service.checkTaskExists(data)){
       this.service.addTodo(data);
       this.resetForm();
+      this.updateView.emit();
     } else {
       this.toast.showToast(`${data.title} already exists!`,ToastType.Error)
     }

@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppComponent } from './app.component';
@@ -14,6 +14,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { LoginComponent } from './login/login.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { AuthGuard } from './auth.guard';
+import { TaskItemComponent } from './task-item/task-item.component';
+import { DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -24,7 +26,8 @@ import { AuthGuard } from './auth.guard';
     ConfimrationDialogComponent,
     ToastNotificationComponent,
     LoginComponent,
-    TasksComponent
+    TasksComponent,
+    TaskItemComponent
   ],
   imports: [
     BrowserModule,
@@ -34,7 +37,8 @@ import { AuthGuard } from './auth.guard';
     ReactiveFormsModule,
     AppRoutingModule,
   ],
-  providers: [AuthGuard],
-  bootstrap: [AppComponent]
+  providers: [AuthGuard, DatePipe],
+  bootstrap: [AppComponent],
+  schemas: [CUSTOM_ELEMENTS_SCHEMA]
 })
 export class AppModule { }

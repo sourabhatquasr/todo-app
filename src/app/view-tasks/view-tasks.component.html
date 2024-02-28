@@ -1,51 +1,14 @@
-<mat-card class="container" *ngIf="todos.length!==0">
-    <mat-card-header>
-        <h2>Tasks</h2>
-    </mat-card-header>
-    <hr />
-    <mat-card-content *ngFor="let todo of todos">
-        <mat-expansion-panel *ngIf="!todo.completed">
-            <mat-expansion-panel-header>
-                <mat-panel-title [ngClass]="{'strike-through': todo.completed}">{{ todo.title }}</mat-panel-title>
-            </mat-expansion-panel-header>
-            <p class="due-date" *ngIf="todo.dueDate">Due Date: <strong>{{todo.dueDate | date:'dd MMM, yyyy'}}</strong>
-            </p>
-            <p class="description" *ngIf="todo.description">Description: {{todo.description}}</p>
-            <div class="actions">
-                <span class="actions-text">Actions: </span>
-                <mat-icon matTooltip="Edit Task" ng-cloak data-ng-class="strikethrough" class="edit-icon"
-                    (click)="editTask(todo)">edit</mat-icon>
-                <mat-icon matTooltip="Mark as Completed" ng-cloak data-ng-class="strikethrough" class="toggle-icon"
-                    (click)="toggleStatus(todo)">check</mat-icon>
-                <mat-icon matTooltip="Delete Task!" ng-cloak data-ng-class="strikethrough" class="delete-icon"
-                    (click)="confirmDeletion(todo)">delete_outline</mat-icon>
-            </div>
-        </mat-expansion-panel>
+<mat-card class="container">
+    <mat-card-content *ngIf="incompleteTasks.length > 0">
+        <h3>Incomplete Tasks</h3>
+        <div *ngFor="let todo of incompleteTasks">
+            <app-task-item [todo]="todo" (toggleStatus)="toggleStatus(todo)" (deleteTask)="confirmDeletion(todo)" (editTask)="editTask(todo)"></app-task-item>
+        </div>
     </mat-card-content>
-    <mat-card-header>
-        <h2>Completed Tasks</h2>
-    </mat-card-header>
-    <hr />
-    <mat-card-content *ngFor="let todo of todos">
-        <mat-expansion-panel *ngIf="todo.completed">
-            <mat-expansion-panel-header>
-                <mat-panel-title [ngClass]="{'strike-through': todo.completed}">
-                    {{ todo.title }}
-                </mat-panel-title>
-            </mat-expansion-panel-header>
-            <p *ngIf="todo.completedDate" class="completed-date">Completed on: <strong> {{todo.completedDate |
-                    date:'dd MMM yyyy'}}</strong> at <strong>{{todo.completedDate | date:'hh:mm a'}}</strong></p>
-            <p class="due-date" *ngIf="todo.dueDate">Due Date: <strong>{{todo.dueDate | date:'dd MMM, yyyy'}}</strong>
-            </p>
-            <p class="description" *ngIf="todo.description"><strong>Description</strong>: {{todo.description}}</p>
-            <div class="actions">
-                <span class="actions-text">Actions: </span>
-                <mat-icon matTooltip="Mark as Incomplete" ng-cloak data-ng-class="strikethrough" class="incomplete-icon"
-                    (click)="toggleStatus(todo)">repeat</mat-icon>
-                <mat-icon matTooltip="Delete Task!" ng-cloak data-ng-class="strikethrough" class="delete-icon"
-                    (click)="confirmDeletion(todo)">delete_outline</mat-icon>
-            </div>
-
-        </mat-expansion-panel>
+    <mat-card-content *ngIf="completedTasks.length > 0">
+        <h3>Completed Tasks</h3>
+        <div *ngFor="let todo of completedTasks">
+            <app-task-item [todo]="todo" (toggleStatus)="toggleStatus(todo)" (deleteTask)="confirmDeletion(todo)"></app-task-item>
+        </div>
     </mat-card-content>
 </mat-card>

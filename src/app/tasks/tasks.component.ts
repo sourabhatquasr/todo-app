@@ -1,8 +1,9 @@
-import { Component } from '@angular/core';
+import { Component, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Toast, ToastService, ToastType } from '../toast.service';
 import { TodoService } from '../todo.service';
 import { Subscription } from 'rxjs';
+import { ViewTasksComponent } from '../view-tasks/view-tasks.component';
 
 @Component({
   selector: 'app-tasks',
@@ -10,6 +11,8 @@ import { Subscription } from 'rxjs';
   styleUrls: ['./tasks.component.css']
 })
 export class TasksComponent {
+  @ViewChild('viewTasks') viewTasks!: ViewTasksComponent;
+
   loggedInUser : null | string = null;
   toast: Toast | null = null;
   
@@ -28,7 +31,6 @@ export class TasksComponent {
   }
 
   logOut() {
-    localStorage.removeItem('isLoggedIn');
     localStorage.removeItem('username');
     this.router.navigate(['/login']);
     this.toastService.showToast('Logged Out Successfully!', ToastType.Success)
@@ -40,4 +42,7 @@ export class TasksComponent {
     this.toastSubscription.unsubscribe();
   } private toastSubscription: Subscription;
 
+  updateView() {
+    this.viewTasks.updateView();
+  }
 }

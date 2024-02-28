@@ -3,11 +3,11 @@
         <form>
             <mat-card-content>
                 <mat-card-header>
-                    <mat-card-title><p>Do you want to delete task: <strong>{{data.title}}</strong> ?</p></mat-card-title>
+                    <mat-card-title>Do you want to delete task: <strong>{{data.title}}</strong> ?</mat-card-title>
                     <mat-card-subtitle>Warning: This action is permanent!</mat-card-subtitle>
                 </mat-card-header>
                     <div>
-                        <button class="clearBtn" color="warn" mat-flat-button matSuffix [mat-dialog-close]="false">
+                        <button class="cancelBtn" color="warn" mat-flat-button matSuffix [mat-dialog-close]="false">
                             <mat-icon>clear</mat-icon>Cancel</button>
                         <button class="updateBtn" type="submit" color="primary" [mat-dialog-close]="true"
                             mat-flat-button (close)="true" matSuffix><mat-icon>check</mat-icon> Yes</button>

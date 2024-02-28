@@ -8,7 +8,7 @@
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Choose a Due Date (Optional)</mat-label>
-                <input matInput formControlName="dueDate" [matDatepicker]="dueDate" [min]="minDate" readonly="">
+                <input matInput formControlName="dueDate" [matDatepicker]="dueDate" [min]="minDate">
                 <mat-hint>Format: MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="dueDate"></mat-datepicker-toggle>
                 <mat-datepicker #dueDate></mat-datepicker>
