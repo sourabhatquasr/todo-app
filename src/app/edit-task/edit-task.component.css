@@ -24,6 +24,10 @@ li{
     color: white !important;
 }
 
+.updateBtn:disabled{
+    background-color: grey !important;
+}
+
 .error-msg{
     color: red;
 }

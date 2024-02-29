@@ -1,6 +1,5 @@
 import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MaterialModule } from './material.module';
@@ -15,7 +14,7 @@ import { LoginComponent } from './login/login.component';
 import { TasksComponent } from './tasks/tasks.component';
 import { AuthGuard } from './auth.guard';
 import { TaskItemComponent } from './task-item/task-item.component';
-import { DatePipe } from '@angular/common';
+import { CommonModule, DatePipe } from '@angular/common';
 
 @NgModule({
   declarations: [
@@ -36,6 +35,7 @@ import { DatePipe } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
+    CommonModule
   ],
   providers: [AuthGuard, DatePipe],
   bootstrap: [AppComponent],

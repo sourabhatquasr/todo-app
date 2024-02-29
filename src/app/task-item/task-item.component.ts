@@ -7,12 +7,13 @@ import { Todo } from '../model';
   styleUrls: ['./task-item.component.css']
 })
 export class TaskItemComponent {
-  @Input() todo: any;
+  @Input() todo: any; // TODO: Strict Type Declaration
 
   @Output() toggleStatus: EventEmitter<Todo> = new EventEmitter<Todo>();
   @Output() editTask: EventEmitter<Todo> = new EventEmitter<Todo>();
   @Output() deleteTask: EventEmitter<Todo> = new EventEmitter<Todo>();
 
+  today: Date = new Date();
 
   constructor() {
   }

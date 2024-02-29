@@ -4,11 +4,12 @@
         <mat-card-content>
             <mat-form-field>
                 <mat-label>Add Task</mat-label>
-                <input formControlName="title" matInput placeholder="Please enter a task" maxlength="70">
+                <input formControlName="title" matInput placeholder="Please enter a task" maxlength="128">
+                <mat-hint>{{ addTaskForm.get('title')?.value?.length || 0}} / 128</mat-hint>
             </mat-form-field>
             <mat-form-field>
                 <mat-label>Choose a Due Date (Optional)</mat-label>
-                <input matInput formControlName="dueDate" [matDatepicker]="dueDate" [min]="minDate">
+                <input matInput formControlName="dueDate" [matDatepicker]="dueDate">
                 <mat-hint>Format: MM/DD/YYYY</mat-hint>
                 <mat-datepicker-toggle matIconSuffix [for]="dueDate"></mat-datepicker-toggle>
                 <mat-datepicker #dueDate></mat-datepicker>

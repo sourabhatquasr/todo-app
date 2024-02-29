@@ -43,6 +43,6 @@ export class TasksComponent {
   } private toastSubscription: Subscription;
 
   updateView() {
-    this.viewTasks.updateView();
+    this.viewTasks.newTaskAdded();
   }
 }

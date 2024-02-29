@@ -34,7 +34,7 @@ export class AddTaskComponent implements OnInit {
 
   addTask() {
     const data = {
-      id: this.service.generateUniqueId(),
+      id: Date.now(),
       title: this.addTaskForm.controls['title'].value,
       dueDate: this.addTaskForm.controls['dueDate'].value,
       completed: false
@@ -43,8 +43,9 @@ export class AddTaskComponent implements OnInit {
       this.service.addTodo(data);
       this.resetForm();
       this.updateView.emit();
+      this.toast.showToast(`'${data.title}' added successfully!`, ToastType.Success);
     } else {
-      this.toast.showToast(`${data.title} already exists!`,ToastType.Error)
+      this.toast.showToast(`${data.title} already exists!`,ToastType.Error);
     }
   }
 

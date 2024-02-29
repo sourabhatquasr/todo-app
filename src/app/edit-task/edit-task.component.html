@@ -6,14 +6,15 @@
                     <li>
                         <mat-form-field>
                             <mat-label>Add Task</mat-label>
-                            <input formControlName="title" matInput  placeholder="Please enter a task" maxlength="70">
+                            <input formControlName="title" matInput placeholder="Please enter a task" maxlength="128">
+                            <mat-hint>{{updateTaskForm.get('title')?.value?.length || 0}} / 128</mat-hint>
                         </mat-form-field>
                     </li>
                     <li>
                         <mat-form-field>
                             <mat-label>Choose a Due Date (Optional)</mat-label>
                             <mat-datepicker #dueDate></mat-datepicker>
-                            <input matInput formControlName="dueDate" [matDatepicker]="dueDate" [min]="minDate">
+                            <input matInput formControlName="dueDate" [matDatepicker]="dueDate">
                             <mat-hint>Format: MM/DD/YYYY</mat-hint>
                             <mat-datepicker-toggle matIconSuffix [for]="dueDate"></mat-datepicker-toggle>
                         </mat-form-field>
@@ -21,15 +22,15 @@
                     <li>
                         <mat-form-field class="example-full-width">
                             <mat-label>Add a description</mat-label>
-                            <textarea matInput formControlName="description" placeholder="Detailed description of the task... (Optional)"></textarea>
+                            <textarea matInput formControlName="description"
+                                placeholder="Detailed description of the task... (Optional)"></textarea>
                         </mat-form-field>
                     </li>
                     <div class="buttons" fxLayout="row" fxLayoutAlign="center">
-                        <button class="updateBtn" type="submit" color="primary" [mat-dialog-close]="true" mat-flat-button
-                        [disabled]="updateTaskForm.invalid" (close)="true"
-                        matSuffix><mat-icon>note_add</mat-icon> Update</button>
-                        <button class="clearBtn" color="warn" mat-flat-button
-                        matSuffix [mat-dialog-close]="false">
+                        <button class="updateBtn" type="submit" color="primary" [mat-dialog-close]="true"
+                            mat-flat-button [disabled]="updateTaskForm.invalid" (close)="true"
+                            matSuffix><mat-icon>note_add</mat-icon> Update</button>
+                        <button class="clearBtn" color="warn" mat-flat-button matSuffix [mat-dialog-close]="false">
                             <mat-icon>clear</mat-icon>Cancel</button>
                     </div>
                 </ul>
@@ -37,4 +38,3 @@
         </form>
     </mat-card>
 </div>
-<!-- "(updateTaskForm.invalid || updateTaskForm.pristine ) || -->

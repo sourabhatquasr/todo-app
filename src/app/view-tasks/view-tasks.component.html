@@ -1,11 +1,21 @@
 <mat-card class="container">
-    <mat-card-content *ngIf="incompleteTasks.length > 0">
+    <button class="toggle-overdue" color="primary" (click)="showOverdueTodos()" mat-raised-button>{{ !showOverdueTasks ? 'Show Overdue Tasks' : 'Show all Tasks' }}</button>
+    <mat-card-content *ngIf="showOverdueTasks" >
+        <h3>Overdue Tasks</h3>
+        <div *ngFor="let todo of overdueTasks">
+            <app-task-item [todo]="todo" (toggleStatus)="toggleStatus(todo)" (deleteTask)="confirmDeletion(todo)"
+                (editTask)="editTask(todo)"></app-task-item>
+        </div>
+    </mat-card-content>
+
+    <mat-card-content *ngIf="incompleteTasks.length > 0 && !showOverdueTasks">
         <h3>Incomplete Tasks</h3>
         <div *ngFor="let todo of incompleteTasks">
             <app-task-item [todo]="todo" (toggleStatus)="toggleStatus(todo)" (deleteTask)="confirmDeletion(todo)" (editTask)="editTask(todo)"></app-task-item>
         </div>
     </mat-card-content>
-    <mat-card-content *ngIf="completedTasks.length > 0">
+
+    <mat-card-content *ngIf="completedTasks.length > 0 && !showOverdueTasks">
         <h3>Completed Tasks</h3>
         <div *ngFor="let todo of completedTasks">
             <app-task-item [todo]="todo" (toggleStatus)="toggleStatus(todo)" (deleteTask)="confirmDeletion(todo)"></app-task-item>

@@ -4,7 +4,7 @@
             <mat-panel-title [ngClass]="{'strike-through': todo.completed}">{{ todo.title }}</mat-panel-title>
         </mat-expansion-panel-header>
         <p class="description" *ngIf="todo.description"><u>Description:</u> {{todo.description}}</p>
-        <p class="due-date" *ngIf="todo.dueDate"><u>Due Date:</u> <strong> {{todo.dueDate | date:'MMMM d, y'}}</strong></p>
+        <p class="due-date" *ngIf="todo.dueDate"><u>Due Date:</u> <strong [style.color]="todo.dueDate < today && !todo.completed? 'red' : 'black'"> {{todo.dueDate | date:'MMMM d, y'}}</strong></p>
         <p *ngIf="todo.completedDate" class="completed-date"><u>Completed on:</u> <strong> {{todo.completedDate | date:'MMMM d, y'}}</strong> at <strong>{{todo.completedDate | date:'hh:mm a'}}</strong></p>
         <div class="actions">
             <span class="actions-text">Actions: </span>

@@ -35,22 +35,6 @@ export class EditTaskComponent {
     })
   }
 
-  checkTodoUnique(){
-    let exists = false;
-    this.todos = this.service.getTodos();
-    let taskTitles: string[] = [];
-    let otherTasks = this.todos.filter(todo => todo.title !== this.data.title);
-    otherTasks.forEach(element => {
-      taskTitles.push(element.title.toLowerCase());
-    });
-    if (taskTitles.includes(this.updateTaskForm.controls['title'].value.toLowerCase())) {
-      exists = false;
-    } else {
-      exists = true;
-    }
-    return exists;
-  }
-
   updateTasks() {
     let updatedData = {
       id: this.data.id,
@@ -59,7 +43,7 @@ export class EditTaskComponent {
       description: this.updateTaskForm.controls['description'].value,
       completed: false,
     }
-    if(this.checkTodoUnique()){
+    if(!this.service.checkTaskExists(updatedData, 'edit')){
       this.service.updateTodo(updatedData);
       this.toast.showToast(`Details of task: ${updatedData.title} modified!`, ToastType.Success)
     } else {

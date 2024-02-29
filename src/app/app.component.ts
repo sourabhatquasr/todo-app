@@ -1,4 +1,4 @@
-import { Component, OnDestroy } from '@angular/core';
+import { Component, OnDestroy, ChangeDetectorRef } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Toast, ToastService } from './toast.service';
 
@@ -9,18 +9,36 @@ import { Toast, ToastService } from './toast.service';
 })
 export class AppComponent implements OnDestroy {
   toast: Toast | null = null;
+  private toastSubscription: Subscription | undefined;
 
-  constructor(private toastService: ToastService) {
+  constructor(private toastService: ToastService, private cdr: ChangeDetectorRef) {
     this.toastSubscription = this.toastService.toastState.subscribe((toast: Toast) => {
-      this.toast = toast;
-      setTimeout(() => {
-        this.toast = null;
-      }, 5000);
+      this.showToast(toast);
     });
   }
 
   ngOnDestroy() {
-    this.toastSubscription.unsubscribe();
-  }  private toastSubscription: Subscription;
+    this.unsubscribeFromToast();
+  }
 
+  private showToast(toast: Toast) {
+    setTimeout(() => {
+      this.toast = toast;
+      this.cdr.detectChanges();
+    });
+    setTimeout(() => {
+      this.clearToast();
+    }, 6000);
+  }
+
+  private clearToast() {
+    this.toast = null;
+    this.cdr.detectChanges();
+  }
+
+  private unsubscribeFromToast() {
+    if (this.toastSubscription) {
+      this.toastSubscription.unsubscribe();
+    }
+  }
 }
