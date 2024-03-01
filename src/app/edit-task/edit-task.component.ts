@@ -1,7 +1,7 @@
 import { Component, Inject } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { TodoService } from '../todo.service';
-import { Todo } from '../model';
+import { TaskStatus, Todo } from '../model';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { ToastService, ToastType } from '../toast.service';
 
@@ -41,7 +41,7 @@ export class EditTaskComponent {
       title: this.updateTaskForm.controls['title'].value,
       dueDate: this.updateTaskForm.controls['dueDate'].value,
       description: this.updateTaskForm.controls['description'].value,
-      completed: false,
+      status: TaskStatus.Todo,
     }
     if(!this.service.checkTaskExists(updatedData, 'edit')){
       this.service.updateTodo(updatedData);

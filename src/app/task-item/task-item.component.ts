@@ -7,10 +7,12 @@ import { Todo } from '../model';
   styleUrls: ['./task-item.component.css']
 })
 export class TaskItemComponent {
-  @Input()
-  todo!: Todo;
+[x: string]: any;
+  @Input() todo: any;
 
-  @Output() toggleStatus: EventEmitter<Todo> = new EventEmitter<Todo>();
+  @Output() markAsCompleted: EventEmitter<Todo> = new EventEmitter<Todo>();
+  @Output() markAsInProgress: EventEmitter<Todo> = new EventEmitter<Todo>();
+  @Output() markAsIncomplete: EventEmitter<Todo> = new EventEmitter<Todo>();
   @Output() editTask: EventEmitter<Todo> = new EventEmitter<Todo>();
   @Output() deleteTask: EventEmitter<Todo> = new EventEmitter<Todo>();
 
@@ -21,10 +23,22 @@ export class TaskItemComponent {
 
   editItem(todo: Todo){
     this.editTask.emit(todo);
+    console.log(1)
   }
 
-  toggleItem(todo: Todo){
-    this.toggleStatus.emit(todo);
+  completeTask(todo: Todo){
+    this.markAsCompleted.emit(todo);
+    console.log(2)
+  }
+
+  redoTask(todo: Todo){
+    this.markAsIncomplete.emit(todo);
+    console.log(3)
+  }
+
+  workOnTask(todo: Todo){
+    this.markAsInProgress.emit(todo);
+    console.log(4)
   }
 
   deleteItem(todo: Todo){

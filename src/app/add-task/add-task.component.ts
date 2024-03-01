@@ -1,7 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { Validators, FormGroup, FormBuilder } from '@angular/forms';
 import { TodoService } from '../todo.service';
-import { Todo } from '../model';
+import { TaskStatus, Todo } from '../model';
 import { ToastService, ToastType } from '../toast.service';
 
 @Component({
@@ -37,7 +37,7 @@ export class AddTaskComponent implements OnInit {
       id: Date.now(),
       title: this.addTaskForm.controls['title'].value,
       dueDate: this.addTaskForm.controls['dueDate'].value,
-      completed: false
+      status: TaskStatus.Todo,
     }
     if(!this.service.checkTaskExists(data)){
       this.service.addTodo(data);
