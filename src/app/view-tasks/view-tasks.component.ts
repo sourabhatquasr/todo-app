@@ -44,7 +44,7 @@ export class ViewTasksComponent {
       this.toast.showToast(`'${todo.title}' marked as completed`, ToastType.Success)
     } else {
     this.service.updateTodo(todo);
-      todo.completedDate = new Date();
+      delete todo.completedDate;
       this.toast.showToast(`'${todo.title}'  is marked as incomplete`, ToastType.Info)
     }
     this.updateView();
