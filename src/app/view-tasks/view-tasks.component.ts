@@ -93,8 +93,7 @@ export class ViewTasksComponent {
   
   updateView() {
     this.incompleteTasks = this.service.getTodos().filter(todo => todo.status === (TaskStatus.Todo));
-    let ongoing = this.service.getTodos().filter(todo => todo.status === (TaskStatus.InProgress));
-    this.ongoingTasks
+    this.ongoingTasks = this.service.getTodos().filter(todo => todo.status === (TaskStatus.InProgress));
     this.unsortedCompletedTasks = this.service.getTodos().filter(todo => todo.status === TaskStatus.Completed);
     this.completedTasks = this.unsortedCompletedTasks.sort((a, b) => (b.completedDate as Date).getTime() - (a.completedDate as Date).getTime());
     this.filterOverdueTasks();
