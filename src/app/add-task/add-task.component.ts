@@ -43,6 +43,7 @@ export class AddTaskComponent implements OnInit {
       this.service.addTodo(data);
       this.resetForm();
       this.updateView.emit();
+      console.log(data)
       this.toast.showToast(`'${data.title}' added successfully!`, ToastType.Success);
     } else {
       this.toast.showToast(`${data.title} already exists!`,ToastType.Error);

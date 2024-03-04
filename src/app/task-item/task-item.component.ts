@@ -23,22 +23,18 @@ export class TaskItemComponent {
 
   editItem(todo: Todo){
     this.editTask.emit(todo);
-    console.log(1)
   }
 
   completeTask(todo: Todo){
     this.markAsCompleted.emit(todo);
-    console.log(2)
   }
 
   redoTask(todo: Todo){
     this.markAsIncomplete.emit(todo);
-    console.log(3)
   }
 
   workOnTask(todo: Todo){
     this.markAsInProgress.emit(todo);
-    console.log(4)
   }
 
   deleteItem(todo: Todo){

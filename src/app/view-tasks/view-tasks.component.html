@@ -7,9 +7,9 @@
         </div>
     </mat-card-content>
 
-    <mat-card-content *ngIf="incompleteTasks.length > 0 && !showOverdueTasks">
-        <h3>Incomplete Tasks</h3>
-        <div *ngFor="let todo of incompleteTasks">
+    <mat-card-content *ngIf="todoTasks.length > 0 && !showOverdueTasks">
+        <h3>ToDo Tasks</h3>
+        <div *ngFor="let todo of todoTasks">
             <app-task-item [todo]="todo" (markAsInProgress)="markTaskInProgress(todo)" (deleteTask)="confirmDeletion(todo)" (editTask)="editTask(todo)"></app-task-item>
         </div>
     </mat-card-content>
@@ -17,7 +17,7 @@
     <mat-card-content *ngIf="ongoingTasks.length > 0 && !showOverdueTasks">
         <h3>Ongoing Tasks</h3>
         <div *ngFor="let todo of ongoingTasks">
-            <app-task-item [todo]="todo" (markAsCompleted)="markAsCompleted(todo)" (deleteTask)="confirmDeletion(todo)"></app-task-item>
+            <app-task-item [todo]="todo" (markAsCompleted)="markAsCompleted(todo)" (markAsIncomplete)="markAsIncomplete(todo)" (deleteTask)="confirmDeletion(todo)"></app-task-item>
         </div>
     </mat-card-content>
 
