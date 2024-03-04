@@ -4,12 +4,16 @@
     top: 75px;
     right: 0px;
     margin-right: 10px;
-    padding: 10px 20px;
+    padding: 5px 10px;
     border-radius: 5px;
+    min-height: 30px;
     color: #fff;
     font-size: 16px;
     z-index: 1000;
+    max-width: 50ch;
     animation: moveUp 5s ease-in linear;
+    word-wrap: break-word;
+    vertical-align: middle;
 }
 
 @keyframes moveUp {
