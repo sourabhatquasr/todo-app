@@ -23,6 +23,7 @@ mat-expansion-panel{
 
 mat-expansion-panel-header {
     min-height: 35px;
+    margin: 5px;
     height: max-content;
 }
 
