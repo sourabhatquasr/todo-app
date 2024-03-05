@@ -21,13 +21,9 @@ mat-expansion-panel{
     box-shadow: 1px 1px 1px 1px rgb(49, 0, 0);
 }
 
-mat-panel-title {
-    margin: 10px;
-}
-
 mat-expansion-panel-header {
-    margin: 2px;
-    padding: 8px 20px 8px 0px;
+    min-height: 35px;
+    height: max-content;
 }
 
 mat-progress-bar{
