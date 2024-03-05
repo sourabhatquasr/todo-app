@@ -1,6 +1,6 @@
 <div>
-    <mat-expansion-panel>
-        <mat-expansion-panel-header>
+    <mat-expansion-panel (opened)="true">
+        <mat-expansion-panel-header matTooltipShowDelay="100" matTooltip="{{todo.title}}" [matTooltipPosition]="'before'">
             <mat-panel-title [ngClass]="{'strike-through': todo.status === 'completed'}">{{ todo.title }}</mat-panel-title>
         </mat-expansion-panel-header>
             <mat-progress-bar *ngIf="todo.status === 'ongoing'" mode="indeterminate"></mat-progress-bar>
@@ -11,9 +11,9 @@
             <span class="actions-text">Actions: </span>
             
             <mat-icon *ngIf="todo.status === 'todo'" matTooltip="Edit Task" class="edit-icon" (click)="editItem(todo)">edit</mat-icon>
-            <mat-icon *ngIf="todo.status === 'todo'" matTooltip="Start Working" class="" (click)="workOnTask(todo)">work_outline</mat-icon>
+            <mat-icon *ngIf="todo.status === 'todo'" matTooltip="Start Working" class="in-progress-icon" (click)="workOnTask(todo)">work_outline</mat-icon>
             <mat-icon *ngIf="todo.status === 'ongoing'" matTooltip="Mark as Completed" ng-cloak data-ng-class="strikethrough" class="toggle-icon" (click)="completeTask(todo)">check</mat-icon>
-            <mat-icon *ngIf="todo.status !== 'todo'" matTooltip="Mark as Incomplete" ng-cloak data-ng-class="strikethrough" class="incomplete-icon" (click)="redoTask(todo)">repeat</mat-icon>
+            <mat-icon *ngIf="todo.status !== 'todo'" matTooltip="Mark as Todo" ng-cloak data-ng-class="strikethrough" class="incomplete-icon" (click)="redoTask(todo)">repeat</mat-icon>
             <mat-icon matTooltip="Delete Task!" class="delete-icon" (click)="deleteItem(todo)">delete_outline</mat-icon>
         </div>
     </mat-expansion-panel>

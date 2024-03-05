@@ -58,7 +58,7 @@ export class ViewTasksComponent {
     todo.status = TaskStatus.Todo;
     todo.completedDate = undefined;
     this.service.updateTodo(todo);
-    this.toast.showToast(`'${todo.title}'  is marked as incomplete`, ToastType.Info);
+    this.toast.showToast(`'${todo.title}'  is marked as Todo`, ToastType.Info);
     this.updateView();
   }
 

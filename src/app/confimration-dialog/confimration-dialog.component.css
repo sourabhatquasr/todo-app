@@ -10,7 +10,10 @@ mat-card-header{
     margin-bottom: 20px;
 }
 mat-card-title{
+    width: 500px;
     font-weight: 400;
+    word-wrap: break-word;
+    margin-bottom: 10px;
 }
 strong{
     font-weight: 500;

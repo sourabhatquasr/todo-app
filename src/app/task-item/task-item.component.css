@@ -21,12 +21,6 @@ mat-expansion-panel{
     box-shadow: 1px 1px 1px 1px rgb(49, 0, 0);
 }
 
-mat-expansion-panel-header {
-    min-height: 35px;
-    margin: 5px;
-    height: max-content;
-}
-
 mat-progress-bar{
     margin-bottom: 5px;
 }
@@ -35,10 +29,9 @@ mat-progress-bar{
     margin-top: 3px;
 }
 
-
 .edit-icon {
     color: rgb(0, 0, 134);
-    font-size: 17px;
+    font-size: 18px;
     padding-top: 4px;
     padding-bottom: 1px;
 }
@@ -55,6 +48,11 @@ mat-progress-bar{
     color: red;
 }
 
+.in-progress-icon {
+    size: 16px;
+    color: rgb(53, 0, 128);
+}
+
 .description {
     margin-top: 0px;
     width: 510px;
@@ -62,6 +60,12 @@ mat-progress-bar{
 }
 
 mat-panel-title {
-    font-size: large;
+    width: 400px;
+}
+
+.mat-expansion-panel-header-title {
+    white-space: nowrap;
     overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: large;
 }
