@@ -2,9 +2,10 @@ import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { Todo } from '../model';
 
 @Component({
-  selector: 'app-task-item',
-  templateUrl: './task-item.component.html',
-  styleUrls: ['./task-item.component.css']
+    selector: 'app-task-item',
+    templateUrl: './task-item.component.html',
+    styleUrls: ['./task-item.component.css'],
+    standalone: false
 })
 export class TaskItemComponent {
 [x: string]: any;

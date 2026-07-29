@@ -4,9 +4,10 @@ import { Toast, ToastService, ToastType } from '../toast.service';
 import { ViewTasksComponent } from '../view-tasks/view-tasks.component';
 
 @Component({
-  selector: 'app-tasks',
-  templateUrl: './tasks.component.html',
-  styleUrls: ['./tasks.component.css']
+    selector: 'app-tasks',
+    templateUrl: './tasks.component.html',
+    styleUrls: ['./tasks.component.css'],
+    standalone: false
 })
 export class TasksComponent {
   @ViewChild('viewTasks') viewTasks!: ViewTasksComponent;

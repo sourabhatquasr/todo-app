@@ -7,10 +7,10 @@ import { ConfimrationDialogComponent } from '../confimration-dialog/confimration
 import { ToastService, ToastType } from '../toast.service';
 
 @Component({
-  selector: 'app-view-tasks',
-  templateUrl: './view-tasks.component.html',
-  styleUrls: ['./view-tasks.component.css'],
-
+    selector: 'app-view-tasks',
+    templateUrl: './view-tasks.component.html',
+    styleUrls: ['./view-tasks.component.css'],
+    standalone: false
 })
 export class ViewTasksComponent {
   todos: Todo[] = [];

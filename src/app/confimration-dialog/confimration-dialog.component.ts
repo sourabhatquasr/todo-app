@@ -3,9 +3,10 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Todo } from '../model';
 
 @Component({
-  selector: 'app-confimration-dialog',
-  templateUrl: './confimration-dialog.component.html',
-  styleUrls: ['./confimration-dialog.component.css']
+    selector: 'app-confimration-dialog',
+    templateUrl: './confimration-dialog.component.html',
+    styleUrls: ['./confimration-dialog.component.css'],
+    standalone: false
 })
 export class ConfimrationDialogComponent {
 

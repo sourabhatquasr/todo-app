@@ -5,9 +5,10 @@ import { TaskStatus, Todo } from '../model';
 import { ToastService, ToastType } from '../toast.service';
 
 @Component({
-  selector: 'app-add-task',
-  templateUrl: './add-task.component.html',
-  styleUrls: ['./add-task.component.css'],
+    selector: 'app-add-task',
+    templateUrl: './add-task.component.html',
+    styleUrls: ['./add-task.component.css'],
+    standalone: false
 })
 
 

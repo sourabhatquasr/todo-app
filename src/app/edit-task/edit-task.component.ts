@@ -7,9 +7,10 @@ import { ToastService, ToastType } from '../toast.service';
 
 
 @Component({
-  selector: 'app-edit-task',
-  templateUrl: './edit-task.component.html',
-  styleUrls: ['./edit-task.component.css']
+    selector: 'app-edit-task',
+    templateUrl: './edit-task.component.html',
+    styleUrls: ['./edit-task.component.css'],
+    standalone: false
 })
 export class EditTaskComponent {
   
