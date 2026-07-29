@@ -1,33 +1,103 @@
-mat-card{
-    width: 600px;
-    margin: 0px;
-    padding-bottom: 40px;
-    padding-top: 40px;
+.edit-dialog {
+  padding: 32px;
+  min-width: 480px;
+  max-width: 560px;
 }
 
-mat-form-field{
-    width: 480px;
+.dialog-header {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  margin-bottom: 28px;
 }
 
-li{
-    list-style: none;
-    margin: 0px;
+.dialog-icon-wrap {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 48px;
+  height: 48px;
+  border-radius: 14px;
+  background: linear-gradient(135deg, rgba(124,58,237,0.3), rgba(14,165,233,0.3));
+  border: 1px solid rgba(167,139,250,0.3);
+  flex-shrink: 0;
+}
+.dialog-icon { color: var(--color-todo); font-size: 22px; }
+
+.dialog-title {
+  margin: 0 0 4px;
+  font-size: 18px;
+  font-weight: 700;
+  color: var(--text-primary);
+  letter-spacing: -0.2px;
+}
+.dialog-subtitle {
+  margin: 0;
+  font-size: 13px;
+  color: var(--text-secondary);
 }
 
-.clearBtn{
-    float: left;
-}
-.updateBtn{
-    margin-right: 47px;
-    float: right;
-    background-color: green !important;
-    color: white !important;
+.dialog-field {
+  width: 100%;
+  display: block;
+  margin-bottom: 16px;
+
+  .field-icon {
+    font-size: 18px;
+    color: var(--text-muted);
+    margin-right: 6px;
+  }
 }
 
-.updateBtn:disabled{
-    background-color: grey !important;
+.dialog-actions {
+  display: flex;
+  gap: 12px;
+  justify-content: flex-end;
+  margin-top: 24px;
+  padding-top: 20px;
+  border-top: 1px solid rgba(255,255,255,0.08);
 }
 
-.error-msg{
-    color: red;
+.btn-cancel {
+  height: 44px;
+  border-radius: 10px !important;
+  font-weight: 600 !important;
+  color: var(--text-secondary) !important;
+  border-color: rgba(255,255,255,0.15) !important;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 18px !important;
+
+  mat-icon { font-size: 17px; height: 17px; width: 17px; }
+  &:hover {
+    background: rgba(255,255,255,0.06) !important;
+    color: var(--text-primary) !important;
+  }
+}
+
+.btn-update {
+  height: 44px;
+  border-radius: 10px !important;
+  font-weight: 700 !important;
+  background: linear-gradient(135deg, #7c3aed, #0ea5e9) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 16px rgba(124,58,237,0.35) !important;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 0 20px !important;
+
+  mat-icon { font-size: 17px; height: 17px; width: 17px; }
+
+  &:hover:not(:disabled) { box-shadow: 0 6px 24px rgba(124,58,237,0.5) !important; }
+  &:disabled {
+    background: rgba(255,255,255,0.06) !important;
+    color: var(--text-muted) !important;
+    box-shadow: none !important;
+  }
+}
+
+@media (max-width: 600px) {
+  .edit-dialog { min-width: unset; padding: 20px; }
 }

@@ -1,40 +1,46 @@
-<div class="container">
-    <mat-card>
-        <form [formGroup]="updateTaskForm" (submit)="updateTasks()">
-            <mat-card-content>
-                <ul>
-                    <li>
-                        <mat-form-field>
-                            <mat-label>Add Task</mat-label>
-                            <input formControlName="title" matInput placeholder="Please enter a task" maxlength="128">
-                            <mat-hint>{{updateTaskForm.get('title')?.value?.length || 0}} / 128</mat-hint>
-                        </mat-form-field>
-                    </li>
-                    <li>
-                        <mat-form-field>
-                            <mat-label>Choose a Due Date (Optional)</mat-label>
-                            <mat-datepicker #dueDate></mat-datepicker>
-                            <input matInput formControlName="dueDate" [matDatepicker]="dueDate">
-                            <mat-hint>Format: MM/DD/YYYY</mat-hint>
-                            <mat-datepicker-toggle matIconSuffix [for]="dueDate"></mat-datepicker-toggle>
-                        </mat-form-field>
-                    </li>
-                    <li>
-                        <mat-form-field class="example-full-width">
-                            <mat-label>Add a description</mat-label>
-                            <textarea matInput formControlName="description"
-                                placeholder="Detailed description of the task... (Optional)"></textarea>
-                        </mat-form-field>
-                    </li>
-                    <div class="buttons" fxLayout="row" fxLayoutAlign="center">
-                        <button class="updateBtn" type="submit" color="primary" [mat-dialog-close]="true"
-                            mat-flat-button [disabled]="updateTaskForm.invalid" (close)="true"
-                            matSuffix><mat-icon>note_add</mat-icon> Update</button>
-                        <button class="clearBtn" color="warn" mat-flat-button matSuffix [mat-dialog-close]="false">
-                            <mat-icon>clear</mat-icon>Cancel</button>
-                    </div>
-                </ul>
-            </mat-card-content>
-        </form>
-    </mat-card>
+<div class="edit-dialog">
+  <div class="dialog-header">
+    <div class="dialog-icon-wrap">
+      <mat-icon class="dialog-icon">edit_note</mat-icon>
+    </div>
+    <div>
+      <h2 class="dialog-title">Edit Task</h2>
+      <p class="dialog-subtitle">Modify the task details below</p>
+    </div>
+  </div>
+
+  <form [formGroup]="updateTaskForm" (submit)="updateTasks()" id="edit-task-form">
+
+    <mat-form-field appearance="fill" class="dialog-field">
+      <mat-label>Task Title</mat-label>
+      <input id="edit-title-input" formControlName="title" matInput placeholder="Enter task title" maxlength="128">
+      <mat-hint align="end">{{ updateTaskForm.get('title')?.value?.length || 0 }} / 128</mat-hint>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="dialog-field">
+      <mat-label>Due Date (Optional)</mat-label>
+      <mat-icon matPrefix class="field-icon">event</mat-icon>
+      <mat-datepicker #dueDate></mat-datepicker>
+      <input matInput id="edit-due-date-input" formControlName="dueDate" [matDatepicker]="dueDate">
+      <mat-hint>MM/DD/YYYY</mat-hint>
+      <mat-datepicker-toggle matIconSuffix [for]="dueDate"></mat-datepicker-toggle>
+    </mat-form-field>
+
+    <mat-form-field appearance="fill" class="dialog-field">
+      <mat-label>Description (Optional)</mat-label>
+      <mat-icon matPrefix class="field-icon">notes</mat-icon>
+      <textarea matInput id="edit-description-input" formControlName="description"
+        placeholder="Add a detailed description..." rows="3"></textarea>
+    </mat-form-field>
+
+    <div class="dialog-actions">
+      <button id="edit-cancel-btn" mat-stroked-button class="btn-cancel" [mat-dialog-close]="false">
+        <mat-icon>close</mat-icon> Cancel
+      </button>
+      <button id="edit-update-btn" mat-flat-button class="btn-update" type="submit"
+        [disabled]="updateTaskForm.invalid" [mat-dialog-close]="true">
+        <mat-icon>save</mat-icon> Update
+      </button>
+    </div>
+  </form>
 </div>

@@ -1,18 +1,17 @@
-<div class="container">
-    <mat-card fxLayout="row" fxLayoutAlign="center">
-        <form>
-            <mat-card-content>
-                <mat-card-header>
-                    <mat-card-title>Do you want to delete task: <strong>{{data.title}}</strong>?</mat-card-title>
-                    <mat-card-subtitle>Warning: This action is permanent!</mat-card-subtitle>
-                </mat-card-header>
-                    <div>
-                        <button class="cancelBtn" color="warn" mat-flat-button matSuffix [mat-dialog-close]="false">
-                            <mat-icon>clear</mat-icon>Cancel</button>
-                        <button class="updateBtn" type="submit" color="primary" [mat-dialog-close]="true"
-                            mat-flat-button (close)="true" matSuffix><mat-icon>check</mat-icon> Yes</button>
-                    </div>
-            </mat-card-content>
-        </form>
-    </mat-card>
+<div class="confirm-dialog">
+  <div class="confirm-icon-wrap">
+    <mat-icon class="confirm-icon">delete_forever</mat-icon>
+  </div>
+  <h2 class="confirm-title">Delete Task?</h2>
+  <p class="confirm-message">
+    You are about to permanently delete <strong>"{{ data.title }}"</strong>. This action cannot be undone.
+  </p>
+  <div class="confirm-actions">
+    <button id="confirm-cancel-btn" mat-stroked-button class="btn-cancel" [mat-dialog-close]="false">
+      <mat-icon>close</mat-icon> Cancel
+    </button>
+    <button id="confirm-delete-btn" mat-flat-button class="btn-delete" [mat-dialog-close]="true">
+      <mat-icon>delete</mat-icon> Delete
+    </button>
+  </div>
 </div>

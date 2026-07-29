@@ -1,36 +1,91 @@
-<div>
-  <mat-expansion-panel (opened)="true">
-    <mat-expansion-panel-header matTooltipShowDelay="100" matTooltip="{{todo.title}}" [matTooltipPosition]="'before'">
-      <mat-panel-title [ngClass]="{'strike-through': todo.status === 'completed'}">{{ todo.title }}</mat-panel-title>
-    </mat-expansion-panel-header>
-    @if (todo.status === 'ongoing') {
-      <mat-progress-bar mode="indeterminate"></mat-progress-bar>
-    }
-    @if (todo.description) {
-      <p class="description"><u>Description:</u> {{todo.description}}</p>
-    }
-    @if (todo.dueDate) {
-      <p class="due-date"><u>Due Date:</u> <strong [style.color]="todo.dueDate < today && todo.status !== 'completed' ? 'red' : 'black'"> {{todo.dueDate | date:'MMMM d, y'}}</strong></p>
-    }
-    @if (todo.completedDate) {
-      <p class="completed-date"><u>Completed on:</u> <strong> {{todo.completedDate | date:'MMMM d, y'}}</strong> at <strong>{{todo.completedDate | date:'hh:mm a'}}</strong></p>
-    }
-    <div class="actions">
-      <span class="actions-text">Actions: </span>
+<div class="task-card"
+  [class.task-todo]="todo.status === 'todo' && !(todo.dueDate && todo.dueDate < today && todo.status !== 'completed')"
+  [class.task-progress]="todo.status === 'ongoing'"
+  [class.task-done]="todo.status === 'completed'"
+  [class.task-overdue]="todo.dueDate && todo.dueDate < today && todo.status !== 'completed'">
 
-      @if (todo.status === 'todo') {
-        <mat-icon matTooltip="Edit Task" class="edit-icon" (click)="editItem(todo)">edit</mat-icon>
-      }
-      @if (todo.status === 'todo') {
-        <mat-icon matTooltip="Start Working" class="in-progress-icon" (click)="workOnTask(todo)">work_outline</mat-icon>
-      }
+  <mat-expansion-panel>
+    <!-- Header -->
+    <mat-expansion-panel-header
+      [matTooltip]="todo.title"
+      matTooltipShowDelay="500"
+      matTooltipPosition="above">
+      <mat-panel-title>
+        <div class="title-row">
+          <!-- Status dot -->
+          <span class="status-dot"
+            [class.dot-todo]="todo.status === 'todo' && !(todo.dueDate && todo.dueDate < today)"
+            [class.dot-overdue]="todo.dueDate && todo.dueDate < today && todo.status !== 'completed'"
+            [class.dot-progress]="todo.status === 'ongoing'"
+            [class.dot-done]="todo.status === 'completed'">
+          </span>
+          <span class="task-title" [class.strike-through]="todo.status === 'completed'">{{ todo.title }}</span>
+        </div>
+      </mat-panel-title>
+    </mat-expansion-panel-header>
+
+    <!-- Body -->
+    <div class="task-body">
+      <!-- Progress bar for ongoing tasks -->
       @if (todo.status === 'ongoing') {
-        <mat-icon matTooltip="Mark as Completed" ng-cloak data-ng-class="strikethrough" class="toggle-icon" (click)="completeTask(todo)">check</mat-icon>
+        <mat-progress-bar mode="indeterminate" class="progress-bar"></mat-progress-bar>
       }
-      @if (todo.status !== 'todo') {
-        <mat-icon matTooltip="Mark as Todo" ng-cloak data-ng-class="strikethrough" class="incomplete-icon" (click)="redoTask(todo)">repeat</mat-icon>
+
+      <!-- Description -->
+      @if (todo.description) {
+        <div class="task-detail">
+          <mat-icon class="detail-icon">notes</mat-icon>
+          <span>{{ todo.description }}</span>
+        </div>
       }
-      <mat-icon matTooltip="Delete Task!" class="delete-icon" (click)="deleteItem(todo)">delete_outline</mat-icon>
+
+      <!-- Due Date -->
+      @if (todo.dueDate) {
+        <div class="task-detail" [class.overdue-text]="todo.dueDate < today && todo.status !== 'completed'">
+          <mat-icon class="detail-icon">event</mat-icon>
+          <span>
+            Due: <strong>{{ todo.dueDate | date:'MMM d, yyyy' }}</strong>
+            @if (todo.dueDate < today && todo.status !== 'completed') {
+              <span class="overdue-tag">Overdue</span>
+            }
+          </span>
+        </div>
+      }
+
+      <!-- Completed Date -->
+      @if (todo.completedDate) {
+        <div class="task-detail done-text">
+          <mat-icon class="detail-icon">check_circle</mat-icon>
+          <span>Completed: <strong>{{ todo.completedDate | date:'MMM d, yyyy' }}</strong> at <strong>{{ todo.completedDate | date:'h:mm a' }}</strong></span>
+        </div>
+      }
+
+      <!-- Action Buttons -->
+      <div class="action-row">
+        @if (todo.status === 'todo') {
+          <button mat-icon-button class="action-btn edit-btn" matTooltip="Edit Task" (click)="editItem(todo)" id="edit-task-btn">
+            <mat-icon>edit</mat-icon>
+          </button>
+        }
+        @if (todo.status === 'todo') {
+          <button mat-icon-button class="action-btn start-btn" matTooltip="Start Working" (click)="workOnTask(todo)" id="start-task-btn">
+            <mat-icon>play_arrow</mat-icon>
+          </button>
+        }
+        @if (todo.status === 'ongoing') {
+          <button mat-icon-button class="action-btn complete-btn" matTooltip="Mark as Completed" (click)="completeTask(todo)" id="complete-task-btn">
+            <mat-icon>check</mat-icon>
+          </button>
+        }
+        @if (todo.status !== 'todo') {
+          <button mat-icon-button class="action-btn redo-btn" matTooltip="Move to To Do" (click)="redoTask(todo)" id="redo-task-btn">
+            <mat-icon>replay</mat-icon>
+          </button>
+        }
+        <button mat-icon-button class="action-btn delete-btn" matTooltip="Delete Task" (click)="deleteItem(todo)" id="delete-task-btn">
+          <mat-icon>delete_outline</mat-icon>
+        </button>
+      </div>
     </div>
   </mat-expansion-panel>
 </div>

@@ -1,19 +1,72 @@
-<div class="homepage">
-    <!-- Toolbar -->
-    <mat-toolbar>
-        <mat-toolbar-row>
-            <img class="gif" src="../assets/images/todo-icon.gif" alt="todo-app-logo">
-            <span class="title">TODO Application</span>
-            <span class="spacer"></span>
-            <span class="">Hi {{ loggedInUser }}! </span>
-            <button (click)="logOut()" matTooltip="Logout" mat-icon-button class="logoutBtn">
-                <mat-icon class="logout">exit_to_app</mat-icon>
-            </button>
-        </mat-toolbar-row>
-    </mat-toolbar>
+<div class="homepage page-enter">
 
-    <!-- Components -->
-    <app-add-task (updateView)="updateView()"></app-add-task>
-    <app-view-tasks #viewTasks></app-view-tasks>
+  <!-- ── Top Navigation Bar ─────────────────────────────────────────── -->
+  <nav class="top-nav glass">
+    <div class="nav-brand">
+      <div class="brand-logo">
+        <span class="brand-check">✓</span>
+      </div>
+      <span class="brand-name">TaskFlow</span>
+    </div>
+
+    <div class="nav-actions">
+      <div class="user-chip">
+        <mat-icon class="user-icon">account_circle</mat-icon>
+        <span class="user-name">{{ loggedInUser }}</span>
+      </div>
+      <button id="logout-btn" mat-icon-button matTooltip="Log out" class="logout-btn" (click)="logOut()">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+  </nav>
+
+  <!-- ── Stats Dashboard Row ────────────────────────────────────────── -->
+  <div class="stats-row">
+    <div class="stat-card glass stat-total">
+      <div class="stat-icon-wrap"><mat-icon>list_alt</mat-icon></div>
+      <div class="stat-info">
+        <span class="stat-value">{{ totalTasks }}</span>
+        <span class="stat-label">Total Tasks</span>
+      </div>
+    </div>
+    <div class="stat-card glass stat-todo">
+      <div class="stat-icon-wrap"><mat-icon>radio_button_unchecked</mat-icon></div>
+      <div class="stat-info">
+        <span class="stat-value">{{ todoCount }}</span>
+        <span class="stat-label">To Do</span>
+      </div>
+    </div>
+    <div class="stat-card glass stat-progress">
+      <div class="stat-icon-wrap"><mat-icon>pending</mat-icon></div>
+      <div class="stat-info">
+        <span class="stat-value">{{ ongoingCount }}</span>
+        <span class="stat-label">In Progress</span>
+      </div>
+    </div>
+    <div class="stat-card glass stat-done">
+      <div class="stat-icon-wrap"><mat-icon>check_circle_outline</mat-icon></div>
+      <div class="stat-info">
+        <span class="stat-value">{{ completedCount }}</span>
+        <span class="stat-label">Completed</span>
+      </div>
+    </div>
+    <div class="stat-card glass stat-overdue">
+      <div class="stat-icon-wrap"><mat-icon>warning_amber</mat-icon></div>
+      <div class="stat-info">
+        <span class="stat-value">{{ overdueCount }}</span>
+        <span class="stat-label">Overdue</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── Main Content ────────────────────────────────────────────────── -->
+  <div class="main-content">
+    <div class="left-panel">
+      <app-add-task (updateView)="updateView()"></app-add-task>
+    </div>
+    <div class="right-panel">
+      <app-view-tasks #viewTasks (statsChanged)="refreshStats()"></app-view-tasks>
+    </div>
+  </div>
 
 </div>

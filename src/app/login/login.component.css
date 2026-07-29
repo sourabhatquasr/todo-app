@@ -1,32 +1,181 @@
-.container {
-    font-family: Verdana, Geneva, Tahoma, sans-serif;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    height: 100%;
+.login-page {
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  min-height: 100vh;
+  padding: 24px;
+  overflow: hidden;
 }
 
+/* Orbs */
+.login-orb {
+  position: absolute;
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 0;
+}
+.login-orb-1 {
+  width: 400px;
+  height: 400px;
+  top: -80px;
+  left: -80px;
+  background: radial-gradient(circle, rgba(139, 92, 246, 0.3) 0%, transparent 70%);
+  filter: blur(60px);
+  animation: orbPulse 8s ease-in-out infinite alternate;
+}
+.login-orb-2 {
+  width: 350px;
+  height: 350px;
+  bottom: -60px;
+  right: -60px;
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.25) 0%, transparent 70%);
+  filter: blur(50px);
+  animation: orbPulse 10s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes orbPulse {
+  from { transform: scale(1); opacity: 0.8; }
+  to   { transform: scale(1.15); opacity: 1; }
+}
+
+/* Card */
 .login-card {
-    width: 400px;
-    box-shadow: 3px 3px 4px 4px rgb(69, 0, 0);
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  max-width: 420px;
+  padding: 48px 40px 40px;
+  border-radius: 28px !important;
+  animation: fadeUp 0.6s cubic-bezier(0.22, 1, 0.36, 1) forwards;
 }
 
-.full-width {
-    width: calc(100% - 48px);
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(30px); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
-.button-container {
-    text-align: center;
+/* Header */
+.login-header {
+  text-align: center;
+  margin-bottom: 36px;
 }
 
-mat-form-field{
-    width: 365px !important;
+.logo-icon {
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  width: 64px;
+  height: 64px;
+  border-radius: 18px;
+  background: linear-gradient(135deg, #7c3aed, #0ea5e9);
+  box-shadow: 0 8px 32px rgba(124, 58, 237, 0.4);
+  margin-bottom: 16px;
+  transition: transform 0.3s ease;
+}
+.logo-icon:hover { transform: scale(1.05) rotate(5deg); }
+
+.logo-check {
+  color: #fff;
+  font-size: 28px;
+  font-weight: 700;
+  line-height: 1;
 }
 
-mat-card-header{
-    margin-bottom: 10px;
+.login-title {
+  margin: 0 0 8px;
+  font-size: 28px;
+  font-weight: 700;
+  letter-spacing: -0.5px;
+  background: linear-gradient(135deg, #a78bfa, #38bdf8);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
 }
 
-mat-hint{
-    color: red;
+.login-subtitle {
+  margin: 0;
+  font-size: 14px;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+.login-subtitle strong { color: var(--text-primary); font-weight: 600; }
+
+/* Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-field {
+  width: 100%;
+  .field-icon {
+    color: var(--text-muted);
+    font-size: 20px;
+    margin-right: 8px;
+    margin-bottom: 2px;
+  }
+  .toggle-password {
+    color: var(--text-muted);
+    cursor: pointer;
+    font-size: 20px;
+    &:hover { color: var(--text-secondary); }
+  }
+}
+
+.error-hint {
+  color: var(--color-overdue) !important;
+}
+
+.login-hint {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 10px 14px;
+  border-radius: 10px;
+  background: rgba(56, 189, 248, 0.08);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-top: 4px;
+
+  .hint-icon {
+    font-size: 16px;
+    color: var(--color-progress);
+    flex-shrink: 0;
+  }
+  strong { color: var(--text-primary); font-weight: 600; }
+}
+
+/* Login button */
+.login-btn {
+  margin-top: 8px;
+  height: 52px;
+  border-radius: 14px !important;
+  font-size: 15px !important;
+  font-weight: 700 !important;
+  letter-spacing: 0.03em;
+  background: linear-gradient(135deg, #7c3aed, #0ea5e9) !important;
+  color: #fff !important;
+  box-shadow: 0 4px 20px rgba(124, 58, 237, 0.4) !important;
+  transition: all 0.25s ease !important;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+
+  mat-icon { font-size: 20px; height: 20px; width: 20px; }
+
+  &:hover:not(:disabled) {
+    box-shadow: 0 6px 28px rgba(124, 58, 237, 0.6) !important;
+    transform: translateY(-1px);
+  }
+  &:active:not(:disabled) { transform: translateY(0); }
+
+  &:disabled {
+    background: rgba(255,255,255,0.08) !important;
+    color: var(--text-muted) !important;
+    box-shadow: none !important;
+  }
 }

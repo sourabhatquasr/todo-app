@@ -1,46 +1,95 @@
-<mat-card class="container">
-  <button class="toggle-overdue" color="primary" (click)="showOverdueTodos()" mat-raised-button>{{ !showOverdueTasks ? 'Show Overdue Tasks' : 'Show all Tasks' }}</button>
-  @if (showOverdueTasks) {
-    <mat-card-content >
-      <h3>Overdue Tasks</h3>
-      @for (todo of overdueTasks; track todo) {
-        <div>
-          <app-task-item [todo]="todo" (markAsInProgress)="markAsCompleted(todo)" (deleteTask)="confirmDeletion(todo)" (editTask)="editTask(todo)"></app-task-item>
+<div class="view-tasks-wrap">
+
+  <!-- ── Column: Overdue ──────────────────────────────────────── -->
+  @if (overdueTasks.length > 0) {
+    <div class="task-section">
+      <div class="section-header overdue-header">
+        <div class="section-title-row">
+          <mat-icon class="section-icon overdue-icon">warning_amber</mat-icon>
+          <h3 class="section-title overdue-title">Overdue</h3>
         </div>
+        <span class="section-badge overdue-badge">{{ overdueTasks.length }}</span>
+      </div>
+      @for (todo of overdueTasks; track todo.id) {
+        <app-task-item
+          [todo]="todo"
+          (markAsInProgress)="markAsCompleted(todo)"
+          (deleteTask)="confirmDeletion(todo)"
+          (editTask)="editTask(todo)">
+        </app-task-item>
       }
-    </mat-card-content>
+    </div>
   }
 
-  @if (todoTasks.length > 0 && !showOverdueTasks) {
-    <mat-card-content>
-      <h3>ToDo Tasks</h3>
-      @for (todo of todoTasks; track todo) {
-        <div>
-          <app-task-item [todo]="todo" (markAsInProgress)="markTaskInProgress(todo)" (deleteTask)="confirmDeletion(todo)" (editTask)="editTask(todo)"></app-task-item>
+  <!-- ── Column: To Do ────────────────────────────────────────── -->
+  @if (todoTasks.length > 0) {
+    <div class="task-section">
+      <div class="section-header">
+        <div class="section-title-row">
+          <mat-icon class="section-icon todo-icon">radio_button_unchecked</mat-icon>
+          <h3 class="section-title todo-title">To Do</h3>
         </div>
+        <span class="section-badge todo-badge">{{ todoTasks.length }}</span>
+      </div>
+      @for (todo of todoTasks; track todo.id) {
+        <app-task-item
+          [todo]="todo"
+          (markAsInProgress)="markTaskInProgress(todo)"
+          (deleteTask)="confirmDeletion(todo)"
+          (editTask)="editTask(todo)">
+        </app-task-item>
       }
-    </mat-card-content>
+    </div>
   }
 
-  @if (ongoingTasks.length > 0 && !showOverdueTasks) {
-    <mat-card-content>
-      <h3>Ongoing Tasks</h3>
-      @for (todo of ongoingTasks; track todo) {
-        <div>
-          <app-task-item [todo]="todo" (markAsCompleted)="markAsCompleted(todo)" (markAsIncomplete)="markAsIncomplete(todo)" (deleteTask)="confirmDeletion(todo)"></app-task-item>
+  <!-- ── Column: In Progress ──────────────────────────────────── -->
+  @if (ongoingTasks.length > 0) {
+    <div class="task-section">
+      <div class="section-header">
+        <div class="section-title-row">
+          <mat-icon class="section-icon progress-icon">pending</mat-icon>
+          <h3 class="section-title progress-title">In Progress</h3>
         </div>
+        <span class="section-badge progress-badge">{{ ongoingTasks.length }}</span>
+      </div>
+      @for (todo of ongoingTasks; track todo.id) {
+        <app-task-item
+          [todo]="todo"
+          (markAsCompleted)="markAsCompleted(todo)"
+          (markAsIncomplete)="markAsIncomplete(todo)"
+          (deleteTask)="confirmDeletion(todo)">
+        </app-task-item>
       }
-    </mat-card-content>
+    </div>
   }
 
-  @if (completedTasks.length > 0 && !showOverdueTasks) {
-    <mat-card-content>
-      <h3>Completed Tasks</h3>
-      @for (todo of completedTasks; track todo) {
-        <div>
-          <app-task-item [todo]="todo" (markAsIncomplete)="markAsIncomplete(todo)" (deleteTask)="confirmDeletion(todo)"></app-task-item>
+  <!-- ── Column: Completed ─────────────────────────────────────── -->
+  @if (completedTasks.length > 0) {
+    <div class="task-section">
+      <div class="section-header">
+        <div class="section-title-row">
+          <mat-icon class="section-icon done-icon">check_circle_outline</mat-icon>
+          <h3 class="section-title done-title">Completed</h3>
         </div>
+        <span class="section-badge done-badge">{{ completedTasks.length }}</span>
+      </div>
+      @for (todo of completedTasks; track todo.id) {
+        <app-task-item
+          [todo]="todo"
+          (markAsIncomplete)="markAsIncomplete(todo)"
+          (deleteTask)="confirmDeletion(todo)">
+        </app-task-item>
       }
-    </mat-card-content>
+    </div>
   }
-</mat-card>
+
+  <!-- Empty state -->
+  @if (todos.length === 0) {
+    <div class="empty-state">
+      <mat-icon class="empty-icon">check_circle</mat-icon>
+      <p class="empty-title">All clear!</p>
+      <p class="empty-subtitle">Add a task to get started.</p>
+    </div>
+  }
+
+</div>

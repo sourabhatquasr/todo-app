@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { TaskStatus, Todo } from '../model';
 import { TodoService } from '../todo.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -13,18 +13,20 @@ import { ToastService, ToastType } from '../toast.service';
     standalone: false
 })
 export class ViewTasksComponent {
+  @Output() statsChanged = new EventEmitter<void>();
+
   todos: Todo[] = [];
   todoTasks: Todo[] = [];
   ongoingTasks: Todo[] = [];
-  completedTasks: Todo[] = []; 
+  completedTasks: Todo[] = [];
   overdueTasks: Todo[] = [];
   showOverdueTasks: boolean = false;
-  
+
   constructor(private service: TodoService, public dialog: MatDialog, private toast: ToastService) {
     this.updateView();
     this.filterOverdueTasks();
   }
-  
+
   showOverdueTodos(){
     this.filterOverdueTasks();
     this.showOverdueTasks = !this.showOverdueTasks;
@@ -32,9 +34,9 @@ export class ViewTasksComponent {
 
   filterOverdueTasks() {
     const currentDate = new Date();
-    let incompleteTasks: Todo[] = this.todoTasks.concat(this.ongoingTasks)
+    let incompleteTasks: Todo[] = this.todoTasks.concat(this.ongoingTasks);
     this.overdueTasks = incompleteTasks.filter(task => {
-      return task.dueDate && new Date(task.dueDate) < currentDate && currentDate && task.status !== TaskStatus.Completed;
+      return task.dueDate && new Date(task.dueDate) < currentDate && task.status !== TaskStatus.Completed;
     });
   }
 
@@ -44,59 +46,63 @@ export class ViewTasksComponent {
     this.service.updateTodo(todo);
     this.toast.showToast(`'${todo.title}' is marked as completed`, ToastType.Success);
     this.updateView();
+    this.statsChanged.emit();
   }
-  
+
   markTaskInProgress(todo: Todo){
     this.service.updateTodo(todo);
     todo.status = TaskStatus.InProgress;
     todo.completedDate = undefined;
-    this.toast.showToast(`'${todo.title}'  is in progress`, ToastType.Success);
+    this.toast.showToast(`'${todo.title}' is in progress`, ToastType.Success);
     this.updateView();
+    this.statsChanged.emit();
   }
-  
+
   markAsIncomplete(todo: Todo){
     todo.status = TaskStatus.Todo;
     todo.completedDate = undefined;
     this.service.updateTodo(todo);
-    this.toast.showToast(`'${todo.title}'  is marked as Todo`, ToastType.Info);
+    this.toast.showToast(`'${todo.title}' is marked as Todo`, ToastType.Info);
     this.updateView();
+    this.statsChanged.emit();
   }
 
   deleteTodo(todo: Todo): void {
     this.service.deleteTodo(todo);
     this.updateView();
+    this.statsChanged.emit();
   }
-  
+
   editTask(todo: Todo) {
-    this.toast.showToast(`Modifying '${todo.title}`, ToastType.Info)
-    const dialogRef = this.dialog.open(EditTaskComponent, { data: todo });
+    this.toast.showToast(`Modifying '${todo.title}'`, ToastType.Info);
+    const dialogRef = this.dialog.open(EditTaskComponent, { data: todo, panelClass: 'dark-dialog' });
     dialogRef.afterClosed().subscribe(result => {
       this.updateView();
+      this.statsChanged.emit();
     });
   }
-  
+
   confirmDeletion(todo: Todo) {
-    const dialogRef = this.dialog.open(ConfimrationDialogComponent, { data: todo });
+    const dialogRef = this.dialog.open(ConfimrationDialogComponent, { data: todo, panelClass: 'dark-dialog' });
     dialogRef.afterClosed().subscribe(result => {
-      if(result){
-        this.deleteTodo(todo);
-      };
+      if(result){ this.deleteTodo(todo); }
     });
   }
 
   newTaskAdded(){
-    if(this.showOverdueTasks){
-      this.showOverdueTodos();
-    }
+    if(this.showOverdueTasks){ this.showOverdueTodos(); }
     this.updateView();
+    this.statsChanged.emit();
   }
-  
+
   updateView() {
     this.todos = this.service.getTodos();
-    this.todoTasks = this.todos.filter(todo => todo.status === (TaskStatus.Todo));
-    this.ongoingTasks = this.todos.filter(todo => todo.status === (TaskStatus.InProgress));
-    let unsortedCompletedTasks = this.todos.filter(todo => todo.status === TaskStatus.Completed);
-    this.completedTasks = unsortedCompletedTasks.sort((a, b) => (b.completedDate as Date).getTime() - (a.completedDate as Date).getTime());
+    this.todoTasks = this.todos.filter(todo => todo.status === TaskStatus.Todo);
+    this.ongoingTasks = this.todos.filter(todo => todo.status === TaskStatus.InProgress);
+    let unsortedCompleted = this.todos.filter(todo => todo.status === TaskStatus.Completed);
+    this.completedTasks = unsortedCompleted.sort((a, b) =>
+      (b.completedDate as Date).getTime() - (a.completedDate as Date).getTime()
+    );
     this.filterOverdueTasks();
   }
 }

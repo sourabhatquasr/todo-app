@@ -1,71 +1,132 @@
-.strike-through {
-    font-size: large;
-    font-weight: 400;
-    text-decoration: line-through;
-    font-style: oblique;
+/* Task Card wrapper */
+.task-card {
+  border-radius: 14px;
+  margin-bottom: 10px;
+  overflow: hidden;
+  border-left: 3px solid transparent;
+  transition: border-color 0.3s ease;
+
+  &.task-todo     { border-left-color: var(--color-todo); }
+  &.task-progress { border-left-color: var(--color-progress); }
+  &.task-done     { border-left-color: var(--color-done); }
+  &.task-overdue  { border-left-color: var(--color-overdue); }
 }
 
-mat-expansion-panel{
-    margin-bottom: 10px;
+/* Title row */
+.title-row {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  width: 100%;
 }
 
-.actions {
-    width: 200px;
-    height: 25px;
-    display: flex;
-    background-color: rgb(255, 230, 216);
-    padding: 5px;
-    border-radius: 5px;
-    justify-content: space-evenly;
-    border: 0.5px solid black;
-    box-shadow: 1px 1px 1px 1px rgb(49, 0, 0);
+/* Status dots */
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  flex-shrink: 0;
+  display: inline-block;
+  &.dot-todo     { background: var(--color-todo); box-shadow: 0 0 6px var(--color-todo); }
+  &.dot-overdue  { background: var(--color-overdue); box-shadow: 0 0 6px var(--color-overdue); }
+  &.dot-progress { background: var(--color-progress); box-shadow: 0 0 6px var(--color-progress);
+                   animation: pulse 1.8s ease-in-out infinite; }
+  &.dot-done     { background: var(--color-done); box-shadow: 0 0 6px var(--color-done); }
 }
 
-mat-progress-bar{
-    margin-bottom: 5px;
+@keyframes pulse {
+  0%, 100% { transform: scale(1); opacity: 1; }
+  50%       { transform: scale(1.5); opacity: 0.7; }
 }
 
-.actions-text {
-    margin-top: 3px;
+/* Task title */
+.task-title {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-primary);
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  max-width: calc(100% - 24px);
+  line-height: 1.4;
 }
 
-.edit-icon {
-    color: rgb(0, 0, 134);
-    font-size: 18px;
-    padding-top: 4px;
-    padding-bottom: 1px;
+/* Body */
+.task-body {
+  padding-top: 4px;
 }
 
-.toggle-icon {
-    color: green;
+/* Progress bar */
+.progress-bar {
+  margin-bottom: 12px;
+  border-radius: 4px;
 }
 
-.incomplete-icon {
-    color: blue;
+/* Detail rows */
+.task-detail {
+  display: flex;
+  align-items: flex-start;
+  gap: 8px;
+  font-size: 13px;
+  color: var(--text-secondary);
+  margin-bottom: 8px;
+  line-height: 1.5;
+
+  .detail-icon {
+    font-size: 16px;
+    height: 16px;
+    width: 16px;
+    color: var(--text-muted);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+  strong { color: var(--text-primary); font-weight: 600; }
 }
 
-.delete-icon {
-    color: red;
+.overdue-text {
+  color: var(--color-overdue) !important;
+  .detail-icon { color: var(--color-overdue) !important; }
+}
+.done-text {
+  color: var(--color-done) !important;
+  .detail-icon { color: var(--color-done) !important; }
 }
 
-.in-progress-icon {
-    size: 16px;
-    color: rgb(53, 0, 128);
+.overdue-tag {
+  display: inline-flex;
+  align-items: center;
+  margin-left: 6px;
+  padding: 1px 8px;
+  border-radius: 100px;
+  background: var(--color-overdue-glow);
+  color: var(--color-overdue);
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.04em;
+  text-transform: uppercase;
 }
 
-.description {
-    margin-top: 0px;
-    width: 510px;
-    text-align: justify;
+/* Action row */
+.action-row {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid rgba(255,255,255,0.06);
 }
 
-mat-panel-title {
-    width: 400px;
+.action-btn {
+  width: 34px !important;
+  height: 34px !important;
+  line-height: 34px !important;
+  border-radius: 10px !important;
+  transition: all 0.2s ease !important;
+  mat-icon { font-size: 17px; }
 }
 
-.mat-expansion-panel-header-title {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    font-size: large;
-}
+.edit-btn { color: var(--color-todo) !important; &:hover { background: var(--color-todo-glow) !important; } }
+.start-btn { color: var(--color-progress) !important; &:hover { background: var(--color-progress-glow) !important; } }
+.complete-btn { color: var(--color-done) !important; &:hover { background: var(--color-done-glow) !important; } }
+.redo-btn { color: var(--text-secondary) !important; &:hover { background: rgba(255,255,255,0.08) !important; } }
+.delete-btn { color: var(--color-overdue) !important; &:hover { background: var(--color-overdue-glow) !important; } }

@@ -15,13 +15,15 @@ export class LoginComponent {
   username: string = '';
   password: string = '';
   returnUrl: string = '';
+  showPassword: boolean = false;
 
-  constructor(private router: Router,
+  constructor(
+    private router: Router,
     private route: ActivatedRoute,
     private toast: ToastService,
     private service: TodoService,
     private fb: FormBuilder,
-    ) { }
+  ) { }
 
   ngOnInit() {
     this.returnUrl = this.route.snapshot.queryParams['returnUrl'] || '/home';
@@ -40,5 +42,4 @@ export class LoginComponent {
       this.toast.showToast("Username and Password do not match!", ToastType.Error)
     }
   }
-
 }
