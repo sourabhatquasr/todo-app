@@ -1,5 +1,7 @@
-<div class="toast" [ngClass]="getToastClass()" *ngIf="toast">
+@if (toast) {
+  <div class="toast" [ngClass]="getToastClass()">
     <p>
-        {{ toast.message }}
+      {{ toast.message }}
     </p>
-</div>
+  </div>
+}
