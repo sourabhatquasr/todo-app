@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { ViewTasksComponent } from './view-tasks.component';
+import { MatDialogModule } from '@angular/material/dialog';
+import { CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
 
 describe('ViewTasksComponent', () => {
   let component: ViewTasksComponent;
@@ -8,7 +9,9 @@ describe('ViewTasksComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ ViewTasksComponent ]
+      imports: [ MatDialogModule ],
+      declarations: [ ViewTasksComponent ],
+      schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
     })
     .compileComponents();
 
