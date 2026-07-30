@@ -37,15 +37,37 @@ export class TasksComponent {
   }
 
   refreshStats() {
+    // Bolt Optimization: single-pass O(N) loop to calculate all dashboard stats.
+    // This avoids 4 separate filter allocations and array iterations, significantly reducing CPU and GC overhead.
     const todos = this.todoService.getTodos();
     const today = new Date();
     this.totalTasks = todos.length;
-    this.todoCount = todos.filter(t => t.status === TaskStatus.Todo).length;
-    this.ongoingCount = todos.filter(t => t.status === TaskStatus.InProgress).length;
-    this.completedCount = todos.filter(t => t.status === TaskStatus.Completed).length;
-    this.overdueCount = todos.filter(t =>
-      t.dueDate && t.dueDate < today && t.status !== TaskStatus.Completed
-    ).length;
+
+    let todoCount = 0;
+    let ongoingCount = 0;
+    let completedCount = 0;
+    let overdueCount = 0;
+
+    for (let i = 0; i < todos.length; i++) {
+      const t = todos[i];
+      const status = t.status;
+      if (status === TaskStatus.Todo) {
+        todoCount++;
+      } else if (status === TaskStatus.InProgress) {
+        ongoingCount++;
+      } else if (status === TaskStatus.Completed) {
+        completedCount++;
+      }
+
+      if (t.dueDate && status !== TaskStatus.Completed && t.dueDate < today) {
+        overdueCount++;
+      }
+    }
+
+    this.todoCount = todoCount;
+    this.ongoingCount = ongoingCount;
+    this.completedCount = completedCount;
+    this.overdueCount = overdueCount;
   }
 
   logOut() {
