@@ -1,0 +1,3 @@
+## 2026-07-30 - [Angular Component Array Filtering Bottleneck]
+**Learning:** In Angular applications handling state with arrays of objects (such as lists of Todos/Tasks), components often repeat multiple `.filter()` calls to group items by status or count stats. Each `.filter()` call creates a new array allocation and performs a full array traversal. This results in $O(K \times N)$ complexity (where $K$ is the number of filters) and high garbage collection thrashing.
+**Action:** Consolidate multiple filter passes into a single-pass `for` loop that groups/counts items directly into separate arrays/counters in $O(N)$ time with minimal object allocations.

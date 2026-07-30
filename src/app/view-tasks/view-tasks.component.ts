@@ -33,11 +33,24 @@ export class ViewTasksComponent {
   }
 
   filterOverdueTasks() {
+    // Bolt Optimization: Calculate overdue tasks without using .concat() which allocates a new array.
+    // Iterates directly over existing arrays, reducing GC overhead.
     const currentDate = new Date();
-    let incompleteTasks: Todo[] = this.todoTasks.concat(this.ongoingTasks);
-    this.overdueTasks = incompleteTasks.filter(task => {
-      return task.dueDate && new Date(task.dueDate) < currentDate && task.status !== TaskStatus.Completed;
-    });
+    const overdue: Todo[] = [];
+
+    const checkAndAdd = (task: Todo) => {
+      if (task.dueDate && new Date(task.dueDate) < currentDate && task.status !== TaskStatus.Completed) {
+        overdue.push(task);
+      }
+    };
+
+    for (let i = 0; i < this.todoTasks.length; i++) {
+      checkAndAdd(this.todoTasks[i]);
+    }
+    for (let i = 0; i < this.ongoingTasks.length; i++) {
+      checkAndAdd(this.ongoingTasks[i]);
+    }
+    this.overdueTasks = overdue;
   }
 
   markAsCompleted(todo: Todo){
@@ -96,13 +109,37 @@ export class ViewTasksComponent {
   }
 
   updateView() {
+    // Bolt Optimization: Single-pass O(N) loop to group tasks by their status.
+    // This removes 3 separate filter allocations and multiple iterations.
     this.todos = this.service.getTodos();
-    this.todoTasks = this.todos.filter(todo => todo.status === TaskStatus.Todo);
-    this.ongoingTasks = this.todos.filter(todo => todo.status === TaskStatus.InProgress);
-    let unsortedCompleted = this.todos.filter(todo => todo.status === TaskStatus.Completed);
-    this.completedTasks = unsortedCompleted.sort((a, b) =>
+
+    const todoTasks: Todo[] = [];
+    const ongoingTasks: Todo[] = [];
+    const completedTasks: Todo[] = [];
+
+    for (let i = 0; i < this.todos.length; i++) {
+      const todo = this.todos[i];
+      const status = todo.status;
+
+      if (status === TaskStatus.Todo) {
+        todoTasks.push(todo);
+      } else if (status === TaskStatus.InProgress) {
+        ongoingTasks.push(todo);
+      } else if (status === TaskStatus.Completed) {
+        completedTasks.push(todo);
+      }
+    }
+
+    // Sort completed tasks by completedDate desc
+    completedTasks.sort((a, b) =>
       (b.completedDate as Date).getTime() - (a.completedDate as Date).getTime()
     );
+
+    this.todoTasks = todoTasks;
+    this.ongoingTasks = ongoingTasks;
+    this.completedTasks = completedTasks;
+
+    // Calculate overdue tasks
     this.filterOverdueTasks();
   }
 }
