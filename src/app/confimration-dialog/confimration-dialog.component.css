@@ -1,75 +1,87 @@
 .confirm-dialog {
-  padding: 36px 32px;
+  padding: 40px 36px;
   text-align: center;
-  max-width: 400px;
+  max-width: 420px;
 }
 
 .confirm-icon-wrap {
   display: inline-flex;
   justify-content: center;
   align-items: center;
-  width: 64px;
-  height: 64px;
-  border-radius: 20px;
+  width: 72px;
+  height: 72px;
+  border-radius: 22px;
   background: var(--color-overdue-glow);
-  border: 1px solid rgba(248,113,113,0.3);
-  margin-bottom: 20px;
+  border: 1px solid rgba(248, 113, 113, 0.35);
+  margin-bottom: 24px;
+  box-shadow: 0 10px 25px rgba(248, 113, 113, 0.15);
 }
 .confirm-icon {
-  font-size: 30px;
+  font-size: 32px;
+  height: 32px;
+  width: 32px;
   color: var(--color-overdue);
 }
 
 .confirm-title {
-  margin: 0 0 12px;
-  font-size: 20px;
-  font-weight: 700;
+  margin: 0 0 14px;
+  font-size: 22px;
+  font-weight: 800;
   color: var(--text-primary);
-  letter-spacing: -0.3px;
+  letter-spacing: -0.4px;
 }
 
 .confirm-message {
-  margin: 0 0 28px;
-  font-size: 14px;
+  margin: 0 0 32px;
+  font-size: 14.5px;
   color: var(--text-secondary);
-  line-height: 1.6;
+  line-height: 1.65;
   strong { color: var(--text-primary); font-weight: 600; }
 }
 
 .confirm-actions {
   display: flex;
-  gap: 12px;
+  gap: 14px;
   justify-content: center;
 }
 
 .btn-cancel {
-  height: 44px;
-  border-radius: 10px !important;
+  height: 46px;
+  border-radius: 12px !important;
   font-weight: 600 !important;
   color: var(--text-secondary) !important;
-  border-color: rgba(255,255,255,0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 0 18px !important;
-  mat-icon { font-size: 17px; height: 17px; width: 17px; }
+  gap: 8px;
+  padding: 0 20px !important;
+  transition: all 0.25s ease !important;
+  mat-icon { font-size: 18px; height: 18px; width: 18px; }
   &:hover {
-    background: rgba(255,255,255,0.06) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
     color: var(--text-primary) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
   }
 }
 
 .btn-delete {
-  height: 44px;
-  border-radius: 10px !important;
+  height: 46px;
+  border-radius: 12px !important;
   font-weight: 700 !important;
-  background: linear-gradient(135deg, #dc2626, #ea580c) !important;
+  background: linear-gradient(135deg, #ef4444, #f97316) !important;
   color: #fff !important;
-  box-shadow: 0 4px 16px rgba(220,38,38,0.35) !important;
+  box-shadow: 0 6px 20px rgba(239, 68, 68, 0.35) !important;
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 0 20px !important;
-  mat-icon { font-size: 17px; height: 17px; width: 17px; }
-  &:hover { box-shadow: 0 6px 24px rgba(220,38,38,0.5) !important; }
+  gap: 8px;
+  padding: 0 22px !important;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
+  mat-icon { font-size: 18px; height: 18px; width: 18px; }
+  &:hover {
+    box-shadow: 0 10px 25px rgba(239, 68, 68, 0.5) !important;
+    transform: translateY(-2px);
+  }
+  &:active {
+    transform: translateY(0);
+  }
 }
