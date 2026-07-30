@@ -73,6 +73,8 @@ export class TasksComponent {
   logOut() {
     localStorage.removeItem('username');
     localStorage.removeItem('isLoggedIn');
+    localStorage.removeItem('token');
+    this.todoService.syncAndLoadTodos();
     this.router.navigate(['/login']);
     this.toastService.showToast('Logged Out Successfully!', ToastType.Success);
     this.loggedInUser = null;

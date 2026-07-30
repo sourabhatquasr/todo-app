@@ -15,6 +15,7 @@ import { TasksComponent } from './tasks/tasks.component';
 import { AuthGuard } from './auth.guard';
 import { TaskItemComponent } from './task-item/task-item.component';
 import { CommonModule, DatePipe } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -35,7 +36,8 @@ import { CommonModule, DatePipe } from '@angular/common';
     FormsModule,
     ReactiveFormsModule,
     AppRoutingModule,
-    CommonModule
+    CommonModule,
+    HttpClientModule
   ],
   providers: [AuthGuard, DatePipe],
   bootstrap: [AppComponent],

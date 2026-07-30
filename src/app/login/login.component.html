@@ -10,12 +10,12 @@
       <div class="logo-icon">
         <span class="logo-check">✓</span>
       </div>
-      <h1 class="login-title">TaskFlow</h1>
-      <p class="login-subtitle">What do you want <strong>TODO</strong> today?</p>
+      <h1 class="login-title">{{ isRegisterMode ? 'Join TaskFlow' : 'TaskFlow' }}</h1>
+      <p class="login-subtitle" [innerHTML]="isRegisterMode ? 'Create your account today!' : 'What do you want <strong>TODO</strong> today?'"></p>
     </div>
 
     <!-- Form -->
-    <form [formGroup]="loginForm" (submit)="login()" class="login-form" id="login-form">
+    <form [formGroup]="loginForm" (submit)="onSubmit()" class="login-form" id="login-form">
       <mat-form-field appearance="fill" class="login-field">
         <mat-label>Username</mat-label>
         <mat-icon matPrefix class="field-icon">person_outline</mat-icon>
@@ -31,7 +31,7 @@
       <mat-form-field appearance="fill" class="login-field">
         <mat-label>Password</mat-label>
         <mat-icon matPrefix class="field-icon">lock_outline</mat-icon>
-        <input matInput placeholder="Enter your password" [type]="showPassword ? 'text' : 'password'" formControlName="password" id="password-input" required>
+        <input matInput [placeholder]="isRegisterMode ? 'Choose a password' : 'Enter your password'" [type]="showPassword ? 'text' : 'password'" formControlName="password" id="password-input" required>
         <mat-icon matSuffix class="toggle-password" (click)="showPassword = !showPassword">
           {{ showPassword ? 'visibility_off' : 'visibility' }}
         </mat-icon>
@@ -40,20 +40,43 @@
         }
       </mat-form-field>
 
-      <div class="login-hint">
-        <mat-icon class="hint-icon">info_outline</mat-icon>
-        <span>Use <strong>admin</strong> as the password</span>
-      </div>
+      <!-- Hint shown only in login mode -->
+      @if (!isRegisterMode) {
+        <div class="login-hint">
+          <mat-icon class="hint-icon">info_outline</mat-icon>
+          <span>Use <strong>admin</strong> as the password</span>
+        </div>
+      }
 
       <button
         id="login-btn"
         mat-flat-button
         class="login-btn"
         type="submit"
-        [disabled]="loginForm.pristine || loginForm.invalid">
-        <mat-icon>login</mat-icon>
-        Sign In
+        [disabled]="loginForm.invalid">
+        <mat-icon>{{ isRegisterMode ? 'person_add' : 'login' }}</mat-icon>
+        {{ isRegisterMode ? 'Sign Up' : 'Sign In' }}
       </button>
     </form>
+
+    <!-- Google Sign-In and Mode Toggle Links -->
+    <div class="google-login-container">
+      <div class="divider-container">
+        <span class="divider-line"></span>
+        <span class="divider-text">or</span>
+        <span class="divider-line"></span>
+      </div>
+      <div id="google-signin-btn"></div>
+    </div>
+
+    <div class="mode-toggle-container">
+      @if (isRegisterMode) {
+        <span>Already have an account? </span>
+        <a class="mode-toggle-link" (click)="toggleMode()">Sign In</a>
+      } @else {
+        <span>Don't have an account? </span>
+        <a class="mode-toggle-link" (click)="toggleMode()">Sign Up</a>
+      }
+    </div>
   </div>
 </div>
