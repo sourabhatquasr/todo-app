@@ -1,35 +1,36 @@
 .edit-dialog {
-  padding: 32px;
-  min-width: 480px;
-  max-width: 560px;
+  padding: 36px;
+  min-width: 500px;
+  max-width: 580px;
 }
 
 .dialog-header {
   display: flex;
   align-items: center;
   gap: 16px;
-  margin-bottom: 28px;
+  margin-bottom: 32px;
 }
 
 .dialog-icon-wrap {
   display: flex;
   justify-content: center;
   align-items: center;
-  width: 48px;
-  height: 48px;
-  border-radius: 14px;
-  background: linear-gradient(135deg, rgba(124,58,237,0.3), rgba(14,165,233,0.3));
-  border: 1px solid rgba(167,139,250,0.3);
+  width: 54px;
+  height: 54px;
+  border-radius: 16px;
+  background: linear-gradient(135deg, rgba(192, 132, 252, 0.25), rgba(56, 189, 248, 0.25));
+  border: 1px solid rgba(192, 132, 252, 0.3);
   flex-shrink: 0;
+  box-shadow: 0 8px 24px rgba(192, 132, 252, 0.15);
 }
-.dialog-icon { color: var(--color-todo); font-size: 22px; }
+.dialog-icon { color: var(--color-todo); font-size: 24px; height: 24px; width: 24px; }
 
 .dialog-title {
-  margin: 0 0 4px;
-  font-size: 18px;
-  font-weight: 700;
+  margin: 0 0 6px;
+  font-size: 20px;
+  font-weight: 800;
   color: var(--text-primary);
-  letter-spacing: -0.2px;
+  letter-spacing: -0.3px;
 }
 .dialog-subtitle {
   margin: 0;
@@ -40,64 +41,78 @@
 .dialog-field {
   width: 100%;
   display: block;
-  margin-bottom: 16px;
+  margin-bottom: 20px;
 
   .field-icon {
-    font-size: 18px;
+    font-size: 20px;
+    height: 20px;
+    width: 20px;
     color: var(--text-muted);
-    margin-right: 6px;
+    margin-right: 8px;
+    margin-bottom: 2px;
   }
 }
 
 .dialog-actions {
   display: flex;
-  gap: 12px;
+  gap: 14px;
   justify-content: flex-end;
-  margin-top: 24px;
-  padding-top: 20px;
-  border-top: 1px solid rgba(255,255,255,0.08);
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
 }
 
 .btn-cancel {
-  height: 44px;
-  border-radius: 10px !important;
+  height: 46px;
+  border-radius: 12px !important;
   font-weight: 600 !important;
   color: var(--text-secondary) !important;
-  border-color: rgba(255,255,255,0.15) !important;
+  border: 1px solid rgba(255, 255, 255, 0.15) !important;
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 0 18px !important;
+  gap: 8px;
+  padding: 0 22px !important;
+  transition: all 0.25s ease !important;
 
-  mat-icon { font-size: 17px; height: 17px; width: 17px; }
+  mat-icon { font-size: 18px; height: 18px; width: 18px; }
   &:hover {
-    background: rgba(255,255,255,0.06) !important;
+    background: rgba(255, 255, 255, 0.06) !important;
     color: var(--text-primary) !important;
+    border-color: rgba(255, 255, 255, 0.3) !important;
   }
 }
 
 .btn-update {
-  height: 44px;
-  border-radius: 10px !important;
+  height: 46px;
+  border-radius: 12px !important;
   font-weight: 700 !important;
-  background: linear-gradient(135deg, #7c3aed, #0ea5e9) !important;
+  background: linear-gradient(135deg, #a855f7, #06b6d4) !important;
   color: #fff !important;
-  box-shadow: 0 4px 16px rgba(124,58,237,0.35) !important;
+  box-shadow: 0 6px 20px rgba(168, 85, 247, 0.35) !important;
   display: flex;
   align-items: center;
-  gap: 6px;
-  padding: 0 20px !important;
+  gap: 8px;
+  padding: 0 24px !important;
+  transition: all 0.25s cubic-bezier(0.2, 0.8, 0.2, 1) !important;
 
-  mat-icon { font-size: 17px; height: 17px; width: 17px; }
+  mat-icon { font-size: 18px; height: 18px; width: 18px; }
 
-  &:hover:not(:disabled) { box-shadow: 0 6px 24px rgba(124,58,237,0.5) !important; }
+  &:hover:not(:disabled) {
+    background: linear-gradient(135deg, #b55fe6, #00c4e6) !important;
+    box-shadow: 0 10px 25px rgba(168, 85, 247, 0.5) !important;
+    transform: translateY(-2px);
+  }
+  &:active:not(:disabled) {
+    transform: translateY(0);
+  }
   &:disabled {
-    background: rgba(255,255,255,0.06) !important;
+    background: rgba(255, 255, 255, 0.04) !important;
     color: var(--text-muted) !important;
     box-shadow: none !important;
+    border: 1px solid rgba(255, 255, 255, 0.03) !important;
   }
 }
 
 @media (max-width: 600px) {
-  .edit-dialog { min-width: unset; padding: 20px; }
+  .edit-dialog { min-width: unset; padding: 24px; }
 }
